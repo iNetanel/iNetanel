@@ -2,6 +2,7 @@
 <!--  NETANEL ELIAV — GitHub Profile README                       -->
 <!--  Repo  : github.com/inetanel/inetanel                        -->
 <!--  Style : Blue BIOS terminal — matching inetanel.com          -->
+<!--  Stats + Articles: auto-updated daily by GitHub Action       -->
 <!-- ══════════════════════════════════════════════════════════════ -->
 
 <div align="center">
@@ -12,7 +13,7 @@
 <br/>
 
 <!-- ── TYPING ANIMATION ────────────────────────────────────────── -->
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&size=18&duration=3000&pause=800&color=55FFFF&background=0000AA&center=true&vCenter=true&width=700&height=40&lines=AI+Expert+%7C+Startup+Mentor+%7C+Advisor;Building+tomorrow%27s+tech+today...;Infusing+life%27s+vibrance+into+code;Forbes+Featured+%7C+60+Leaders+on+AI;inetanel.com+%E2%86%92+Check+out+my+lab!)](https://inetanel.com)
+<img src="https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&size=18&duration=3000&pause=800&color=55FFFF&background=0000AA&center=true&vCenter=true&width=860&height=40&lines=AI+Expert+%7C+Startup+Mentor+%7C+Advisor;Building+tomorrow%27s+tech+today...;Infusing+life%27s+vibrance+into+code;Forbes+Featured+%7C+60+Leaders+on+AI;inetanel.com+%E2%86%92+Check+out+my+lab!" width="100%" alt="Typing animation"/>
 
 </div>
 
@@ -98,23 +99,36 @@ Bio     : Infusing life's vibrance into technological craft.
 
 <div align="center">
 
-[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=inetanel&show_icons=true&theme=transparent&bg_color=0000aa&title_color=55ffff&text_color=ffffff&icon_color=ffff55&border_color=55ffff&border_radius=0&include_all_commits=true&count_private=true)](https://github.com/inetanel)
-&nbsp;&nbsp;
-[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=inetanel&layout=compact&theme=transparent&bg_color=0000aa&title_color=55ffff&text_color=ffffff&border_color=55ffff&border_radius=0)](https://github.com/inetanel)
+<!-- Stats badges — auto-updated daily by GitHub Action -->
+<!-- STATS-BADGES:START -->
+
+![Stars](https://img.shields.io/badge/Stars-0-ffff55?style=flat-square&labelColor=0000aa&color=0000aa)
+![Commits](https://img.shields.io/badge/Commits_2026-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+![Followers](https://img.shields.io/badge/Followers-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+![Repos](https://img.shields.io/badge/Repos-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+
+<!-- STATS-BADGES:END -->
 
 <br/>
 
+<!-- Stats card — generated locally, no external service -->
+<img src="generated-stats.svg" width="420" alt="GitHub Stats"/>
+&nbsp;&nbsp;
+<img src="generated-langs.svg" width="420" alt="Top Languages"/>
+
+<br/>
+
+<!-- Streak — demolab is reliable, kept as-is -->
 [![GitHub Streak](https://streak-stats.demolab.com?user=inetanel&theme=transparent&background=0000aa&ring=55ffff&fire=ffff55&currStreakLabel=55ffff&sideLabels=55ffff&currStreakNum=ffffff&sideNums=ffffff&dates=aaaaaa&border=55ffff&border_radius=0)](https://github.com/inetanel)
 
 <br/>
 
+<!-- Trophies -->
 [![GitHub Trophies](https://github-profile-trophy.vercel.app/?username=inetanel&theme=matrix&no-frame=true&no-bg=true&margin-w=8&column=6)](https://github.com/inetanel)
 
 <br/>
 
-<!-- Snake: renders after you run the GitHub Action once.           -->
-<!-- Until then it shows nothing — run the Action to activate it.  -->
-<!-- Go to: Actions tab → Generate Snake Animation → Run workflow  -->
+<!-- Snake contribution animation — activate by running the snake.yml Action -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/inetanel/inetanel/output/github-contribution-grid-snake-dark.svg"/>
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/inetanel/inetanel/output/github-contribution-grid-snake.svg"/>
@@ -133,62 +147,70 @@ Bio     : Infusing life's vibrance into technological craft.
 
 <br/>
 
+<!-- ARTICLES:START -->
+
 ```
-ARTICLES & PUBLICATIONS — 13 total  [ sorted: newest first ]
+ARTICLES & PUBLICATIONS — 13 total  [ auto-updated daily ]
 ───────────────────────────────────────────────────────────────────────
-[2026-03]  Claude Code vs OpenCode: The CTO Decision Nobody Talks
-           About Honestly                                    #CTO #AI
+[2026-03]  Claude Code vs OpenCode: The CTO Decision Nobody Talks About Honestly
+           #CTO  #AI  #ClaudeCode
            → inetanel.com/articles/claude-code-vs-opencode-cto-decision
 
 [2026-03]  Someone Caught the AI Money Loop — Here's What They Found
-                                                    #AI #Investment
+           #AI  #Investment
            → inetanel.com/articles/the-ai-money-loop-nvidia-openai-big-tech
 
-[2026-01]  AGI is Everywhere in Headlines. Here's What Actually
-           Breaks in Production.                         #AGI #AI
+[2026-01]  AGI is Everywhere in Headlines. Here's What Actually Breaks in Production.
+           #AGI  #AI  #production
            → inetanel.com/articles/agi-production-what-breaks
 
-[2025-12]  GPT Benchmark Analysis 2025: The Hard Reality for
-           OpenAI's CEO                               #AI #AGI
+[2025-12]  GPT Benchmark Analysis 2025: The Hard Reality for OpenAI's CEO
+           #AI  #AGI
            → inetanel.com/articles/gpt_benchmark_analysis_2025
 
-[2025-03]  How AI Agents Are Helping Startups to Scale    [ Forbes ]
-                                                  #AIAgents #Startups
-           → forbes.com/sites/alisoncoleman/2025/03/16/...
+[2025-03]  How AI Agents Are Helping Startups to Scale  [ Forbes ]
+           #AIAgents  #Startups
+           → forbes.com/sites/alisoncoleman/2025/03/16/how-ai-agents-are-helping-startups-to-scale
 
-[2025-01]  The Missing Link in AGI: Why the Amygdala Could Be Our
-           Breakthrough Moment                            #AI #AGI
+[2025-01]  The Missing Link in AGI: Why the Amygdala Could Be Our Breakthrough Moment
+           #AI  #AGI
            → inetanel.com/articles/the_missing_link_in_agi
 
 [2025-01]  The Evolution of Intelligence: Knowledge, Wisdom & AI
-                                              #AIResearch #Cognition
+           #AIResearch  #CognitiveScience
            → inetanel.com/articles/the_evolution_of_intelligence
 
 [2024-08]  Open Source vs. Big Tech: Who Will Win the AI War?
-                                                  #AI #OpenSource
+           #AI  #OpenSource
            → inetanel.com/articles/open_source_vs_big_tech
 
 [2024-01]  AdaptiveBridge Unleashed: Wasting Money in Production Blitz
-                                              #ML #FeatureEngineering
+           #ML  #FeatureEngineering
            → inetanel.com/articles/adaptivebridge_unleashed
 
-[2023-10]  Bridging the Data Gap with AdaptiveBridge              #ML
+[2023-10]  Bridging the Data Gap with AdaptiveBridge
+           #ML  #DataQuality
            → inetanel.com/articles/bridging_the_data_gap_with_adaptivebridge
 
-[2022-08]  Podcast Interview — The Brand Called You        #Podcast
+[2022-08]  Podcast Interview — The Brand Called You  [ YouTube ]
+           #Podcast  #AI
            → youtube.com/watch?v=a3ZlCef71Gw
 
-[2022-01]  From Algorithms to Ethics  [ 60 Leaders on AI ]  #Ethics
+[2022-01]  From Algorithms to Ethics  [ 60 Leaders on AI ]
+           #AI  #Ethics
            → 60 Leaders on Artificial Intelligence (PDF)
 
 [2021-10]  SightBit: AI-Based Drowning Prevention  [ Silicon Review ]
-           → thesiliconreview.com/...
+           #ComputerVision  #Safety
+           → thesiliconreview.com/magazine/profile/sightbit-...
 ───────────────────────────────────────────────────────────────────────
 ```
 
+<!-- ARTICLES:END -->
+
 <div align="center">
 
-[![Read All Articles](https://img.shields.io/badge/Read_All_13_Articles_%E2%86%92-0000aa?style=for-the-badge&logo=readme&logoColor=55ffff&labelColor=0000aa)](https://inetanel.com/articles)
+[![Read All Articles](https://img.shields.io/badge/Read_All_Articles_%E2%86%92-0000aa?style=for-the-badge&logo=readme&logoColor=55ffff&labelColor=0000aa)](https://inetanel.com/articles)
 
 </div>
 
