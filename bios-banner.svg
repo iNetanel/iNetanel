@@ -49,7 +49,7 @@
 
   <line x1="14" y1="200" x2="846" y2="200" stroke="#55ffff" stroke-width="1" class="main"/>
 
-  <g class="main"><text x="14" y="228" font-size="30" fill="#ffffff" font-weight="bold" letter-spacing="4">NETANEL ELIAV</text><text x="364" y="228" font-size="30" fill="#55ffff" class="cur">_</text></g>
+  <g class="main"><text x="14" y="228" font-size="30" fill="#ffffff" font-weight="bold" letter-spacing="4">NETANEL ELIAV</text><text x="364" y="224" font-size="30" fill="#55ffff" class="cur">_</text></g>
   <g class="m2"><text x="14" y="248" font-size="13" fill="#ffff55">// AI Expert  ·  Startup Mentor  ·  Advisor  ·  UK &amp; Global</text></g>
   <g class="m3"><text x="14" y="264" font-size="11" fill="#aaaaaa">Infusing life's vibrance into technological craft — pushing boundaries before they hit the market.</text></g>
 
