@@ -32,7 +32,7 @@
   <text x="14" y="19" font-size="14" fill="#0000aa" font-weight="bold" letter-spacing="2">NETANEL BIOS FIRMWARE</text>
   <text x="690" y="19" font-size="14" fill="#0000aa" letter-spacing="1">v1.90AI  2026</text>
 
-  <g class="l1"><text x="14" y="50" font-size="12" fill="#55ffff">[ OK ]</text><text x="76" y="50" font-size="12" fill="#55ffff">Detecting CPU............... </text><text x="410" y="50" font-size="12" fill="#ffffff">HUMAN — NETANEL ELIAV</text></g>
+  <g class="l1"><text x="14" y="50" font-size="12" fill="#55ffff">[ OK ]</text><text x="76" y="50" font-size="12" fill="#55ffff">Detecting CPU............... </text><text x="410" y="51" font-size="12" fill="#ffffff">HUMAN — NETANEL ELIAV</text></g>
   <g class="l2"><text x="14" y="66" font-size="12" fill="#55ffff">[ OK ]</text><text x="76" y="66" font-size="12" fill="#55ffff">AI expertise module......... </text><text x="410" y="66" font-size="12" fill="#ffffff">INITIALIZED @ UK &amp; GLOBAL</text></g>
   <g class="l3"><text x="14" y="82" font-size="12" fill="#55ffff">[ OK ]</text><text x="76" y="82" font-size="12" fill="#55ffff">Startup mentor daemon....... </text><text x="410" y="82" font-size="12" fill="#ffffff">RUNNING — ADVISORS LOADED</text></g>
   <g class="l4"><text x="14" y="98" font-size="12" fill="#55ffff">[ OK ]</text><text x="76" y="98" font-size="12" fill="#55ffff">Open source stack........... </text><text x="410" y="98" font-size="12" fill="#ffffff">Python / JS / TS / Node / React</text></g>
@@ -52,7 +52,6 @@
   <g class="main"><text x="14" y="228" font-size="30" fill="#ffffff" font-weight="bold" letter-spacing="4">NETANEL ELIAV</text><text x="364" y="228" font-size="30" fill="#55ffff" class="cur">_</text></g>
   <g class="m2"><text x="14" y="248" font-size="13" fill="#ffff55">// AI Expert  ·  Startup Mentor  ·  Advisor  ·  UK &amp; Global</text></g>
   <g class="m3"><text x="14" y="264" font-size="11" fill="#aaaaaa">Infusing life's vibrance into technological craft — pushing boundaries before they hit the market.</text></g>
-  <g class="m4"><text x="14" y="278" font-size="11" fill="#55ffff">[ F2 ] Skills   [ F3 ] Articles   [ F4 ] Life Map   [ F5 ] About   [ F6 ] Projects   [ F8 ] Contact</text></g>
 
   <rect width="860" height="278" fill="url(#scan)"/>
 </svg>
