@@ -1,8 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="420" height="220" viewBox="0 0 420 220">
-  <rect width="420" height="220" fill="#0000aa"/>
-  <rect width="420" height="220" fill="none" stroke="#55ffff" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="88" viewBox="0 0 420 88">
+  <rect width="420" height="88" fill="#0000aa" rx="0"/>
+  <rect width="420" height="88" fill="none" stroke="#55ffff" stroke-width="1" rx="0"/>
   <rect width="420" height="24" fill="#aaaaaa"/>
-  <text x="10" y="16" font-size="11" fill="#0000aa" font-family="'Courier New',monospace" font-weight="bold" letter-spacing="1">&#9632;  TOP LANGUAGES</text>
-  <text x="210" y="120" font-size="13" fill="#55ffff" font-family="'Courier New',monospace" text-anchor="middle">[ run GitHub Action to populate ]</text>
-  <text x="210" y="140" font-size="11" fill="#aaaaaa" font-family="'Courier New',monospace" text-anchor="middle">Actions &#8594; Update Profile README &#8594; Run workflow</text>
+  <text x="10" y="16" font-size="11" fill="#0000aa" font-family="'Courier New',monospace" font-weight="bold" letter-spacing="1">■  TOP LANGUAGES</text>
+  
+  <text x="20" y="51" font-size="12" fill="#55ffff" font-family="'Courier New',monospace">Python</text>
+  <rect x="20" y="56" width="380" height="14" fill="#55ffff" opacity="0.85"/>
+  <text x="400" y="67" font-size="10" fill="#aaaaaa" font-family="'Courier New',monospace" text-anchor="end">100.0%</text>
 </svg>
