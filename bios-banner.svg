@@ -32,7 +32,7 @@
   <text x="14" y="19" font-size="14" fill="#0000aa" font-weight="bold" letter-spacing="2">NETANEL BIOS FIRMWARE</text>
   <text x="690" y="19" font-size="14" fill="#0000aa" letter-spacing="1">v1.90AI  2026</text>
 
-  <g class="l1"><text x="14" y="50" font-size="12" fill="#55ffff">[ OK ]</text><text x="76" y="50" font-size="12" fill="#55ffff">Detecting CPU............... </text><text x="410" y="51" font-size="12" fill="#ffffff">HUMAN — NETANEL ELIAV</text></g>
+  <g class="l1"><text x="14" y="50" font-size="12" fill="#55ffff">[ OK ]</text><text x="76" y="50" font-size="12" fill="#55ffff">Detecting CPU............... </text><text x="410" y="50" font-size="12" fill="#ffffff">HUMAN — NETANEL ELIAV</text></g>
   <g class="l2"><text x="14" y="66" font-size="12" fill="#55ffff">[ OK ]</text><text x="76" y="66" font-size="12" fill="#55ffff">AI expertise module......... </text><text x="410" y="66" font-size="12" fill="#ffffff">INITIALIZED @ UK &amp; GLOBAL</text></g>
   <g class="l3"><text x="14" y="82" font-size="12" fill="#55ffff">[ OK ]</text><text x="76" y="82" font-size="12" fill="#55ffff">Startup mentor daemon....... </text><text x="410" y="82" font-size="12" fill="#ffffff">RUNNING — ADVISORS LOADED</text></g>
   <g class="l4"><text x="14" y="98" font-size="12" fill="#55ffff">[ OK ]</text><text x="76" y="98" font-size="12" fill="#55ffff">Open source stack........... </text><text x="410" y="98" font-size="12" fill="#ffffff">Python / JS / TS / Node / React</text></g>
