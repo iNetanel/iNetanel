@@ -7,12 +7,10 @@
 
 <div align="center">
 
-<!-- ── BOOT BANNER ─────────────────────────────────────────────── -->
 <img src="bios-banner.svg" width="100%" alt="Netanel Eliav – BIOS boot banner"/>
 
 <br/>
 
-<!-- ── TYPING ANIMATION ────────────────────────────────────────── -->
 <img src="https://readme-typing-svg.demolab.com?font=Share+Tech+Mono&size=18&duration=3000&pause=800&color=55FFFF&background=0000AA&center=true&vCenter=true&width=860&height=40&lines=AI+Expert+%7C+Startup+Mentor+%7C+Advisor;Building+tomorrow%27s+tech+today...;Infusing+life%27s+vibrance+into+code;Forbes+Featured+%7C+60+Leaders+on+AI;inetanel.com+%E2%86%92+Check+out+my+lab!" width="100%" alt="Typing animation"/>
 
 </div>
@@ -99,26 +97,37 @@ Bio     : Infusing life's vibrance into technological craft.
 
 <div align="center">
 
-<!-- Stats badges — auto-updated daily by GitHub Action -->
+<!-- Live badges — auto-updated daily -->
 <!-- STATS-BADGES:START -->
 
+<<<<<<< HEAD
 ![Stars](https://img.shields.io/badge/Stars-1-ffff55?style=flat-square&labelColor=0000aa&color=0000aa)
 ![Commits](https://img.shields.io/badge/Commits_2026-31-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
 ![Followers](https://img.shields.io/badge/Followers-1-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
 ![Repos](https://img.shields.io/badge/Repos-3-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+=======
+![Stars](https://img.shields.io/badge/Stars-0-ffff55?style=flat-square&labelColor=0000aa&color=0000aa)
+![Commits](https://img.shields.io/badge/Commits_2026-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+![PRs](https://img.shields.io/badge/Pull_Requests-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+![Followers](https://img.shields.io/badge/Followers-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+![Repos](https://img.shields.io/badge/Repos-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+>>>>>>> 94aa2e0 (Update)
 
 <!-- STATS-BADGES:END -->
 
 <br/>
 
-<!-- Stats card — generated locally, no external service -->
-<img src="generated-stats.svg" width="420" alt="GitHub Stats"/>
-&nbsp;&nbsp;
-<img src="generated-langs.svg" width="420" alt="Top Languages"/>
+<!-- Language chart — generated locally, full width -->
+<img src="generated-langs.svg" width="100%" alt="Top Languages"/>
 
 <br/>
 
-<!-- Streak — demolab is reliable, kept as-is -->
+<!-- Contribution heatmap — generated locally, full width -->
+<img src="generated-activity.svg" width="100%" alt="Contribution Activity"/>
+
+<br/>
+
+<!-- Streak -->
 [![GitHub Streak](https://streak-stats.demolab.com?user=inetanel&theme=transparent&background=0000aa&ring=55ffff&fire=ffff55&currStreakLabel=55ffff&sideLabels=55ffff&currStreakNum=ffffff&sideNums=ffffff&dates=aaaaaa&border=55ffff&border_radius=0)](https://github.com/inetanel)
 
 <br/>
@@ -128,8 +137,7 @@ Bio     : Infusing life's vibrance into technological craft.
 
 <br/>
 
-<!-- Snake: activate by running Actions → Generate Snake Animation → Run workflow -->
-<!-- Once run once, it updates automatically every day -->
+<!-- Snake — activate by running Actions → Generate Snake Animation → Run workflow -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/inetanel/inetanel/output/github-contribution-grid-snake-dark.svg"/>
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/inetanel/inetanel/output/github-contribution-grid-snake.svg"/>
