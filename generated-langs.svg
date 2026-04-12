@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="220" viewBox="0 0 420 220">
+  <rect width="420" height="220" fill="#0000aa"/>
+  <rect width="420" height="220" fill="none" stroke="#55ffff" stroke-width="1"/>
+  <rect width="420" height="24" fill="#aaaaaa"/>
+  <text x="10" y="16" font-size="11" fill="#0000aa" font-family="'Courier New',monospace" font-weight="bold" letter-spacing="1">&#9632;  TOP LANGUAGES</text>
+  <text x="210" y="120" font-size="13" fill="#55ffff" font-family="'Courier New',monospace" text-anchor="middle">[ run GitHub Action to populate ]</text>
+  <text x="210" y="140" font-size="11" fill="#aaaaaa" font-family="'Courier New',monospace" text-anchor="middle">Actions &#8594; Update Profile README &#8594; Run workflow</text>
+</svg>
