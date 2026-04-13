@@ -212,14 +212,17 @@ def fetch_stats():
     try:
         u = gh_get(f"https://api.github.com/users/{USERNAME}")
         stats["followers"] = u.get("followers", 0)
-        stats["repos"]     = u.get("public_repos", 0)
+        # Use authenticated endpoint to count ALL repos including private
         page = 1
         while True:
-            repos = gh_get(f"https://api.github.com/users/{USERNAME}/repos",
-                           {"per_page": 100, "page": page})
+            repos = gh_get("https://api.github.com/user/repos",
+                           {"per_page": 100, "page": page,
+                            "affiliation": "owner,organization_member",
+                            "visibility": "all"})
             if not repos or not isinstance(repos, list): break
             for repo in repos:
                 stats["stars"] += repo.get("stargazers_count", 0)
+                stats["repos"] += 1
             if len(repos) < 100: break
             page += 1
         year = datetime.utcnow().year
@@ -659,19 +662,15 @@ def rewrite_readme(articles, stats, projects, contact):
     # Contact — regenerates section-contact.svg directly
     build_contact_block(contact)
 
-    # Stats badges
+    # Stats — regenerate section-stats.svg with live numbers
     year = datetime.utcnow().year
-    badges = "\n".join([
-        f"![Stars](https://img.shields.io/badge/Stars-{stats['stars']}-ffff55?style=flat-square&labelColor=0000aa&color=0000aa)",
-        f"![Commits](https://img.shields.io/badge/Commits_{year}-{stats['commits']}-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)",
-        f"![PRs](https://img.shields.io/badge/Pull_Requests-{stats['prs']}-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)",
-        f"![Followers](https://img.shields.io/badge/Followers-{stats['followers']}-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)",
-        f"![Repos](https://img.shields.io/badge/Repos-{stats['repos']}-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)",
-    ])
-    content = re.sub(
-        r"(<!-- STATS-BADGES:START -->).*?(<!-- STATS-BADGES:END -->)",
-        f"<!-- STATS-BADGES:START -->\n\n{badges}\n\n<!-- STATS-BADGES:END -->",
-        content, flags=re.DOTALL)
+    now  = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    rows = [
+        (f"Stars      :  {stats['stars']:,}  ·  Followers  :  {stats['followers']:,}  ·  Repos  :  {stats['repos']:,}", "#ffff55", 12, False),
+        (f"Commits {year}:  {stats['commits']:,}  ·  Pull Requests  :  {stats['prs']:,}  ·  Updated: {now}", "#55ffff", 11, False),
+        ("─"*74, "#55ffff", 10, False),
+    ]
+    make_section_svg("section-stats.svg", "GITHUB STATS", "[ F9 ]", rows)
 
     with open(README_PATH, "w", encoding="utf-8") as f:
         f.write(content)
