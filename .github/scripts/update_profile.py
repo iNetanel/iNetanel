@@ -509,8 +509,8 @@ def fetch_projects():
                     for li in node.find_all("li"):
                         desc_parts.append(li.get_text(strip=True))
                 node = node.find_next_sibling()
-            desc = " ".join(desc_parts[:2])
-            if len(desc) > 200: desc = desc[:197]+"..."
+            desc = " ".join(desc_parts[:4])
+            if len(desc) > 400: desc = desc[:397]+"..."
             projects.append({"name":name,"stage":stage,"status":status,"desc":desc,"url":first_url})
         print(f"[projects] {len(projects)} found")
         return projects
@@ -539,7 +539,7 @@ def build_projects_block(projects):
         if p.get("stage"): meta.append(p["stage"])
         if p.get("status"): meta.append(p["status"])
         if meta: rows.append(("  " + "  ·  ".join(meta), CYAN, 11, False))
-        for dl in wrap(p.get("desc",""), 80)[:3]:
+        for dl in wrap(p.get("desc",""), 80)[:6]:
             rows.append(("  " + dl, WHITE, 12, False))
         if p.get("url"):
             disp = p["url"].replace("https://","").replace("http://","")
