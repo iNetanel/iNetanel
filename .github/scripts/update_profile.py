@@ -240,17 +240,20 @@ def generate_langs_svg(langs_raw):
     if not langs_raw:
         return None
 
-    total = sum(langs_raw.values())
-    top   = sorted(langs_raw.items(), key=lambda x: x[1], reverse=True)[:7]
+    # Take top 8 languages
+    top = sorted(langs_raw.items(), key=lambda x: x[1], reverse=True)[:8]
     top_total = sum(v for _, v in top)
+    N = len(top)
 
-    W, H   = 860, 460
-    cx, cy = W // 2, H // 2 + 20
-    R      = 130   # max radius — slightly smaller to give labels more room
-    N      = len(top)
-    rings  = 5
+    W, H   = 860, 500
     HDR    = 24
+    cx     = W // 2
+    cy     = HDR + (H - HDR) // 2 + 10
+    R      = 148
+    rings  = 5
     PI     = math.pi
+
+    colors = [CYAN, YELLOW, "#55ff55", "#ff55ff", "#ff9955", "#aaaaff", "#ff5555", "#55ffaa"]
 
     def angle(i):
         return (i / N) * 2 * PI - PI / 2
@@ -259,86 +262,75 @@ def generate_langs_svg(langs_raw):
         a = angle(i)
         return cx + r * math.cos(a), cy + r * math.sin(a)
 
-    # scale: map top language (100%) to full radius
-    # other langs scaled relative to top
-    max_pct = top[0][1] / top_total
+    max_val = top[0][1]
 
-    def scaled_r(pct):
-        return R * (pct / max_pct) * 0.95
+    def data_r(val):
+        return max(10, R * val / max_val)
 
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
+    parts = []
+    parts.append(f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
   <rect width="{W}" height="{H}" fill="{BG}"/>
   <rect width="{W}" height="{HDR}" fill="{GRAY}"/>
-  <text x="10" y="{HDR-8}" font-size="11" fill="{BG}" font-family="'Courier New',monospace" font-weight="bold" letter-spacing="2">&#9632;  LANGUAGE RADAR &#8212; {USERNAME}</text>
-"""
+  <text x="10" y="{HDR-8}" font-size="11" fill="{BG}" font-family="'Courier New',monospace" font-weight="bold" letter-spacing="2">&#9632;  LANGUAGE RADAR &#8212; {USERNAME} ({N} languages)</text>''')
 
-    # grid rings
+    # Grid rings
     for ring in range(1, rings + 1):
-        r      = R * ring / rings
-        points = " ".join(f"{pt(i,r)[0]:.1f},{pt(i,r)[1]:.1f}" for i in range(N))
-        opacity = "0.5" if ring == rings else "0.2"
-        width   = "1" if ring == rings else "0.5"
-        svg += f'  <polygon points="{points}" fill="none" stroke="{CYAN}" stroke-width="{width}" opacity="{opacity}"/>\n'
+        r   = R * ring / rings
+        pts = " ".join(f"{pt(i,r)[0]:.1f},{pt(i,r)[1]:.1f}" for i in range(N))
+        sw  = "1" if ring == rings else "0.5"
+        op  = "0.45" if ring == rings else "0.15"
+        parts.append(f'  <polygon points="{pts}" fill="none" stroke="{CYAN}" stroke-width="{sw}" opacity="{op}"/>')
+        # ring label at top
+        lbl = round(ring / rings * 100)
+        parts.append(f'  <text x="{cx+5:.0f}" y="{cy - r + 5:.0f}" font-size="10" fill="{CYAN}" opacity="0.45" font-family="\'Courier New\',monospace">{lbl}%</text>')
 
-        # ring % label — right of centre, readable
-        label_pct = round(ring / rings * 100)
-        svg += f'  <text x="{cx+5:.0f}" y="{cy - r + 5:.0f}" font-size="11" fill="{CYAN}" opacity="0.55" font-family="\'Courier New\',monospace">{label_pct}%</text>\n'
-
-    # spokes
+    # Spokes
     for i in range(N):
         x, y = pt(i, R)
-        svg += f'  <line x1="{cx}" y1="{cy}" x2="{x:.1f}" y2="{y:.1f}" stroke="{CYAN}" stroke-width="0.5" opacity="0.2"/>\n'
+        parts.append(f'  <line x1="{cx:.1f}" y1="{cy:.1f}" x2="{x:.1f}" y2="{y:.1f}" stroke="{CYAN}" stroke-width="0.5" opacity="0.18"/>')
 
-    # filled polygon
-    poly_pts = []
-    for i, (lang, count) in enumerate(top):
-        pct = count / top_total
-        r   = scaled_r(pct)
-        x, y = pt(i, r)
-        poly_pts.append(f"{x:.1f},{y:.1f}")
-    poly_str = " ".join(poly_pts)
-    svg += f'  <polygon points="{poly_str}" fill="{CYAN}" fill-opacity="0.1" stroke="{CYAN}" stroke-width="1.5" stroke-linejoin="round"/>\n'
+    # Filled data polygon
+    poly = " ".join(f"{pt(i, data_r(v))[0]:.1f},{pt(i, data_r(v))[1]:.1f}" for i, (_, v) in enumerate(top))
+    parts.append(f'  <polygon points="{poly}" fill="{CYAN}" fill-opacity="0.1" stroke="{CYAN}" stroke-width="2" stroke-linejoin="round"/>')
 
-    # dots + labels — pushed far out with background boxes
-    LABEL_R  = R + 72   # much further out for breathing room
-    BOX_H    = 46
-    BOX_PAD  = 12
+    # Dots + clamped label boxes
+    LABEL_R = R + 70
+    MARGIN  = 8
 
-    for i, (lang, count) in enumerate(top):
-        pct   = count / top_total
-        r     = scaled_r(pct)
-        color = LANG_COLORS[i % len(LANG_COLORS)]
-        x, y  = pt(i, r)
-
-        # glow circle
-        svg += f'  <circle cx="{x:.1f}" cy="{y:.1f}" r="12" fill="{color}" opacity="0.15"/>\n'
-        # dot
-        svg += f'  <circle cx="{x:.1f}" cy="{y:.1f}" r="5" fill="{color}" stroke="{BG}" stroke-width="2"/>\n'
-
-        # label position — pushed outside
-        lx, ly = pt(i, LABEL_R)
-        pct_disp = f"{pct*100:.1f}%"
-
-        # estimate box width based on longer of name/pct (~9px per char at 15px font)
+    for i, (lang, val) in enumerate(top):
+        color    = colors[i % len(colors)]
+        dr       = data_r(val)
+        dx, dy   = pt(i, dr)
+        lx, ly   = pt(i, LABEL_R)
+        pct_val  = val / top_total * 100
+        pct_disp = f"{pct_val:.1f}%"
         chars    = max(len(lang), len(pct_disp))
-        box_w    = chars * 10 + BOX_PAD * 2
-        box_x    = lx - box_w / 2
-        box_y    = ly - BOX_H / 2
+        BOX_W    = chars * 9 + 24
+        BOX_H    = 44
+        # clamp box inside canvas
+        bx = max(MARGIN, min(W - BOX_W - MARGIN, lx - BOX_W / 2))
+        by = max(HDR + MARGIN, min(H - BOX_H - MARGIN, ly - BOX_H / 2))
+        tx = bx + BOX_W / 2
+        ty = by + BOX_H / 2
 
-        # dark background box with colored border — makes text pop on any bg
-        svg += f'  <rect x="{box_x:.1f}" y="{box_y:.1f}" width="{box_w:.0f}" height="{BOX_H}" fill="#000066" rx="3" opacity="0.85"/>\n'
-        svg += f'  <rect x="{box_x:.1f}" y="{box_y:.1f}" width="{box_w:.0f}" height="{BOX_H}" fill="none" stroke="{color}" stroke-width="1" rx="3" opacity="0.6"/>\n'
-
-        # language name — 15px bold colored
-        svg += f'  <text x="{lx:.1f}" y="{ly - 7:.1f}" font-size="15" fill="{color}" font-family="\'Courier New\',monospace" text-anchor="middle" font-weight="bold">{lang}</text>\n'
-        # percentage — 16px bold white, clearly readable
-        svg += f'  <text x="{lx:.1f}" y="{ly + 14:.1f}" font-size="16" fill="{WHITE}" font-family="\'Courier New\',monospace" text-anchor="middle" font-weight="bold">{pct_disp}</text>\n'
+        # glow
+        parts.append(f'  <circle cx="{dx:.1f}" cy="{dy:.1f}" r="13" fill="{color}" opacity="0.12"/>')
+        # dot
+        parts.append(f'  <circle cx="{dx:.1f}" cy="{dy:.1f}" r="5" fill="{color}" stroke="{BG}" stroke-width="2"/>')
+        # dashed leader
+        parts.append(f'  <line x1="{dx:.1f}" y1="{dy:.1f}" x2="{tx:.1f}" y2="{ty:.1f}" stroke="{color}" stroke-width="0.5" opacity="0.3" stroke-dasharray="3 3"/>')
+        # box fill + border
+        parts.append(f'  <rect x="{bx:.1f}" y="{by:.1f}" width="{BOX_W:.0f}" height="{BOX_H}" fill="{BG2}" rx="3"/>')
+        parts.append(f'  <rect x="{bx:.1f}" y="{by:.1f}" width="{BOX_W:.0f}" height="{BOX_H}" fill="none" stroke="{color}" stroke-width="1" rx="3" opacity="0.7"/>')
+        # name
+        parts.append(f'  <text x="{tx:.1f}" y="{by+16:.1f}" font-size="13" fill="{color}" font-family="\'Courier New\',monospace" text-anchor="middle" font-weight="bold">{lang}</text>')
+        # pct — white, larger
+        parts.append(f'  <text x="{tx:.1f}" y="{by+34:.1f}" font-size="15" fill="{WHITE}" font-family="\'Courier New\',monospace" text-anchor="middle" font-weight="bold">{pct_disp}</text>')
 
     # centre dot
-    svg += f'  <circle cx="{cx}" cy="{cy}" r="3" fill="{CYAN}"/>\n'
-
-    svg += "</svg>"
-    return svg
+    parts.append(f'  <circle cx="{cx:.1f}" cy="{cy:.1f}" r="3" fill="{CYAN}"/>')
+    parts.append("</svg>")
+    return "\n".join(parts)
 
 
 # ═════════════════════════════════════════════════════════════════
