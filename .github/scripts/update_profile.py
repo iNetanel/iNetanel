@@ -159,8 +159,10 @@ def fetch_langs():
     langs = {}
     page = 1
     while True:
-        repos = gh_get(f"https://api.github.com/users/{USERNAME}/repos",
-                       {"per_page": 100, "page": page})
+        repos = gh_get("https://api.github.com/user/repos",
+                       {"per_page": 100, "page": page,
+                        "affiliation": "owner,organization_member",
+                        "visibility": "all"})
         if not repos or not isinstance(repos, list): break
         for repo in repos:
             if repo.get("fork"): continue
@@ -171,6 +173,7 @@ def fetch_langs():
             except: pass
         if len(repos) < 100: break
         page += 1
+    print(f"[langs] {len(langs)} languages found")
     return langs
 
 def fetch_contributions():
@@ -277,21 +280,21 @@ def generate_langs_svg(langs_raw):
     for ring in range(1, rings + 1):
         r   = R * ring / rings
         pts = " ".join(f"{pt(i,r)[0]:.1f},{pt(i,r)[1]:.1f}" for i in range(N))
-        sw  = "1" if ring == rings else "0.5"
-        op  = "0.45" if ring == rings else "0.15"
+        sw  = "1.5" if ring == rings else "0.8"
+        op  = "0.85" if ring == rings else "0.45"
         parts.append(f'  <polygon points="{pts}" fill="none" stroke="{CYAN}" stroke-width="{sw}" opacity="{op}"/>')
         # ring label at top
         lbl = round(ring / rings * 100)
-        parts.append(f'  <text x="{cx+5:.0f}" y="{cy - r + 5:.0f}" font-size="10" fill="{CYAN}" opacity="0.45" font-family="\'Courier New\',monospace">{lbl}%</text>')
+        parts.append(f'  <text x="{cx+5:.0f}" y="{cy - r + 5:.0f}" font-size="10" fill="{CYAN}" opacity="0.7" font-family="\'Courier New\',monospace">{lbl}%</text>')
 
     # Spokes
     for i in range(N):
         x, y = pt(i, R)
-        parts.append(f'  <line x1="{cx:.1f}" y1="{cy:.1f}" x2="{x:.1f}" y2="{y:.1f}" stroke="{CYAN}" stroke-width="0.5" opacity="0.18"/>')
+        parts.append(f'  <line x1="{cx:.1f}" y1="{cy:.1f}" x2="{x:.1f}" y2="{y:.1f}" stroke="{CYAN}" stroke-width="1" opacity="0.45"/>')
 
     # Filled data polygon
     poly = " ".join(f"{pt(i, data_r(v))[0]:.1f},{pt(i, data_r(v))[1]:.1f}" for i, (_, v) in enumerate(top))
-    parts.append(f'  <polygon points="{poly}" fill="{CYAN}" fill-opacity="0.1" stroke="{CYAN}" stroke-width="2" stroke-linejoin="round"/>')
+    parts.append(f'  <polygon points="{poly}" fill="{CYAN}" fill-opacity="0.2" stroke="{CYAN}" stroke-width="2.5" stroke-linejoin="round"/>')
 
     # Dots + clamped label boxes
     LABEL_R = R + 70
@@ -444,21 +447,54 @@ def fetch_articles():
     return articles
 
 def build_articles_block(articles):
-    now   = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
-    lines = ["```",
-             f"ARTICLES & PUBLICATIONS — {len(articles)} total  [ auto-updated: {now} ]",
-             "─" * 71]
+    """Generate a blue SVG file for articles and return the markdown img tag."""
+    now    = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    BG     = "#0000aa"
+    BG2    = "#00007a"
+    CYAN   = "#55ffff"
+    YELLOW = "#ffff55"
+    WHITE  = "#ffffff"
+    GRAY   = "#aaaaaa"
+    W      = 860
+    MONO   = "'Courier New',monospace"
+    PAD    = 14
+    LH     = 19
+
+    rows = []
+    # header
+    rows.append((f"ARTICLES & PUBLICATIONS — {len(articles)} total  [ updated: {now} ]", CYAN, 11, True))
+    rows.append(("─" * 72, CYAN, 10, False))
     for a in articles:
-        date = f"[{a['date']}]" if a["date"] else "        "
-        tags = "  " + "  ".join(f"#{t}" for t in a["tags"]) if a["tags"] else ""
-        url  = a["url"].replace("https://", "").replace("http://", "")
+        date  = f"[{a['date']}]" if a["date"] else "        "
+        title = a["title"]
+        if len(title) > 70: title = title[:67] + "..."
+        url   = a["url"].replace("https://","").replace("http://","")
         if len(url) > 68: url = url[:65] + "..."
-        lines.append(f"{date}  {a['title']}")
-        if tags: lines.append(f"         {tags}")
-        lines.append(f"         → {url}")
-        lines.append("")
-    lines += ["─" * 71, "```"]
-    return "\n".join(lines)
+        tags  = "  ".join(f"#{t}" for t in a["tags"]) if a["tags"] else ""
+        rows.append((f"{date}  {title}", WHITE, 12, False))
+        if tags: rows.append((f"            {tags}", YELLOW, 11, False))
+        rows.append((f"            → {url}", CYAN, 11, False))
+        rows.append(("", GRAY, 10, False))
+    rows.append(("─" * 72, CYAN, 10, False))
+
+    H = PAD + len(rows) * LH + PAD
+    texts = ""
+    for i, (txt, col, fs, bold) in enumerate(rows):
+        y  = PAD + i * LH + LH - 4
+        fw = "bold" if bold else "normal"
+        txt_safe = txt.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
+        texts += f'  <text x="20" y="{y}" font-size="{fs}" fill="{col}" font-family="{MONO}" font-weight="{fw}">{txt_safe}</text>\n'
+
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
+  <rect width="{W}" height="{H}" fill="{BG}"/>
+  <rect x="14" y="8" width="{W-28}" height="{H-16}" fill="{BG2}" rx="2" opacity="0.4"/>
+{texts}</svg>'''
+
+    with open("block-articles.svg", "w", encoding="utf-8") as f:
+        f.write(svg)
+
+    return '<div align="center"><img src="block-articles.svg" width="100%" alt="Articles"/></div>'
+
 
 
 # ═════════════════════════════════════════════════════════════════
