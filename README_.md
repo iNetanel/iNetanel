@@ -18,12 +18,18 @@
 <div align="center"><img src="section-stack.svg" width="100%" alt="Tech Stack"/></div>
 
 <!-- ── GITHUB STATS ─────────────────────────────────────────────── -->
+<div align="center"><img src="section-stats.svg" width="100%" alt="GitHub Stats"/></div>
 <div align="center"><img src="generated-langs.svg" width="100%" alt="Language Radar"/></div>
 <div align="center"><img src="generated-activity.svg" width="100%" alt="Contribution Activity"/></div>
 <div align="center"><img src="generated-trophies.svg" width="100%" alt="Trophies"/></div>
 
 <!-- ── ARTICLES — regenerated daily by Action ────────────────────── -->
 <div align="center"><img src="section-articles.svg" width="100%" alt="Articles"/></div>
+<div align="center">
+
+[![Read All](https://img.shields.io/badge/Read_All_Articles_%E2%86%92-0000aa?style=for-the-badge&logo=readme&logoColor=55ffff&labelColor=0000aa)](https://inetanel.com/articles)
+
+</div>
 
 <!-- ── PROJECTS — regenerated daily by Action ────────────────────── -->
 <div align="center"><img src="section-projects.svg" width="100%" alt="Projects"/></div>
