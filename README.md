@@ -30,7 +30,13 @@
 <div align="center">
 
 <!-- STATS-BADGES:START -->
-![Stars](https://img.shields.io/badge/Stars-0-ffff55?style=flat-square&labelColor=0000aa&color=0000aa)&nbsp;![Commits](https://img.shields.io/badge/Commits_2026-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)&nbsp;![PRs](https://img.shields.io/badge/Pull_Requests-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)&nbsp;![Followers](https://img.shields.io/badge/Followers-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)&nbsp;![Repos](https://img.shields.io/badge/Repos-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+
+![Stars](https://img.shields.io/badge/Stars-1-ffff55?style=flat-square&labelColor=0000aa&color=0000aa)
+![Commits](https://img.shields.io/badge/Commits_2026-1073-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+![PRs](https://img.shields.io/badge/Pull_Requests-275-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+![Followers](https://img.shields.io/badge/Followers-1-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+![Repos](https://img.shields.io/badge/Repos-3-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+
 <!-- STATS-BADGES:END -->
 
 <img src="generated-langs.svg" width="100%" alt="Language Radar"/>
@@ -45,7 +51,21 @@
 <div align="center"><img src="section-articles.svg" width="100%" alt="Articles"/></div>
 
 <!-- ARTICLES:START -->
-<div align="center"><img src="block-articles.svg" width="100%" alt="Articles"/></div>
+
+<div align="center"><img src="block-articles-header.svg" width="100%" alt="Articles"/></div>
+<a href="https://inetanel.com/articles/gpt-5-4-vs-claude-opus-4-6-coding"><img src="block-article-28893.svg" width="100%" alt="GPT-5.4 vs Claude Opus 4.6 for Coding"/></a>
+<a href="https://inetanel.com/articles/documentation-is-code-machine-first-knowledge-architecture"><img src="block-article-22812.svg" width="100%" alt="Documentation is Code Now: Machine-First Knowledge Architect"/></a>
+<a href="https://inetanel.com/articles/claude-code-vs-opencode-cto-decision"><img src="block-article-68888.svg" width="100%" alt="Claude Code vs OpenCode: The CTO Decision Nobody Talks About"/></a>
+<a href="https://inetanel.com/articles/the-ai-money-loop-nvidia-openai-big-tech"><img src="block-article-69686.svg" width="100%" alt="Someone Caught the AI Money Loop - Here's What They Found"/></a>
+<a href="https://inetanel.com/articles/agi-production-what-breaks"><img src="block-article-45523.svg" width="100%" alt="AGI is Everywhere in Headlines. Here's What Actually Breaks "/></a>
+<a href="https://inetanel.com/articles/gpt_benchmark_analysis_2025"><img src="block-article-10973.svg" width="100%" alt="GPT Benchmark Analysis 2025: The Hard Reality for OpenAI's C"/></a>
+<a href="https://inetanel.com/articles/the_missing_link_in_agi"><img src="block-article-46968.svg" width="100%" alt="The Missing Link in AGI: Why the Amygdala Could be Our Break"/></a>
+<a href="https://inetanel.com/articles/the_evolution_of_intelligence"><img src="block-article-86134.svg" width="100%" alt="The Evolution of Intelligence: Distinguishing Knowledge, Wis"/></a>
+<a href="https://inetanel.com/articles/open_source_vs_big_tech"><img src="block-article-92201.svg" width="100%" alt="Open Source vs. Big Tech: Who Will Win the AI War?"/></a>
+<a href="https://inetanel.com/articles/adaptivebridge_unleashed"><img src="block-article-3411.svg" width="100%" alt="AdaptiveBridge Unleashed: The Maze of Features — Wasting Mon"/></a>
+<a href="https://inetanel.com/articles/bridging_the_data_gap_with_adaptivebridge"><img src="block-article-17417.svg" width="100%" alt="Bridging the Data Gap with AdaptiveBridge: NaN Is No Longer "/></a>
+<div align="center"><img src="block-articles-footer.svg" width="100%" alt=""/></div>
+
 <!-- ARTICLES:END -->
 
 <div align="center">
@@ -58,14 +78,24 @@
 <div align="center"><img src="section-projects.svg" width="100%" alt="Projects"/></div>
 
 <!-- PROJECTS:START -->
-<div align="center"><img src="block-projects.svg" width="100%" alt="Projects"/></div>
+
+<div align="center"><img src="block-projects-header.svg" width="100%" alt="Projects"/></div>
+<div align="center"><img src="block-project-95270.svg" width="100%" alt="MHIL"/></div>
+<div align="center"><img src="block-project-41515.svg" width="100%" alt="MazeByte"/></div>
+<div align="center"><img src="block-project-25562.svg" width="100%" alt="SightBit"/></div>
+<div align="center"><img src="block-project-84355.svg" width="100%" alt="AdaptiveBridge"/></div>
+<div align="center"><img src="block-project-60744.svg" width="100%" alt="Jhive"/></div>
+<div align="center"><img src="block-projects-footer.svg" width="100%" alt=""/></div>
+
 <!-- PROJECTS:END -->
 
 <!-- ── CONTACT ─────────────────────────────────────────────────── -->
 <div align="center"><img src="section-contact.svg" width="100%" alt="Contact"/></div>
 
 <!-- CONTACT:START -->
-<div align="center"><img src="block-contact.svg" width="100%" alt="Contact"/></div>
+
+<a href="https://inetanel.com/contact"><img src="block-contact.svg" width="100%" alt="Contact"/></a>
+
 <!-- CONTACT:END -->
 
 <!-- ── FOOTER ─────────────────────────────────────────────────── -->
