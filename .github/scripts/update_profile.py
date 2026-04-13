@@ -31,6 +31,121 @@ LANG_COLORS = [CYAN, YELLOW, "#55ff55", "#ff55ff", "#ff9955", "#aaaaff", "#ff555
 
 
 # ═════════════════════════════════════════════════════════════════
+# SVG: TROPHIES
+# ═════════════════════════════════════════════════════════════════
+
+def generate_trophies_svg(stats, days):
+    """Generate BIOS-styled trophy cards from real GitHub data."""
+
+    total_commits  = stats.get("commits", 0)
+    total_stars    = stats.get("stars", 0)
+    total_prs      = stats.get("prs", 0)
+    total_repos    = stats.get("repos", 0)
+    total_followers= stats.get("followers", 0)
+    total_contribs = sum(days) if days else 0
+
+    def rank(value, tiers):
+        # tiers: list of (min_value, rank_label, color)
+        for min_val, label, color in sorted(tiers, key=lambda x: x[0], reverse=True):
+            if value >= min_val:
+                return label, color
+        return "C", GRAY
+
+    trophies = [
+        {
+            "title": "Commits",
+            "value": f"{total_commits:,}",
+            "rank": rank(total_commits, [
+                (1000, "SSS", "#ffff55"), (500, "SS", "#55ffff"),
+                (200, "S", "#55ff55"),   (100, "A", "#aaaaff"),
+                (50,  "B", GRAY),        (0,   "C", GRAY),
+            ]),
+        },
+        {
+            "title": "Stars",
+            "value": f"{total_stars:,}",
+            "rank": rank(total_stars, [
+                (500, "SSS", "#ffff55"), (200, "SS", "#55ffff"),
+                (100, "S", "#55ff55"),  (50,  "A", "#aaaaff"),
+                (10,  "B", GRAY),       (0,   "C", GRAY),
+            ]),
+        },
+        {
+            "title": "Pull Requests",
+            "value": f"{total_prs:,}",
+            "rank": rank(total_prs, [
+                (200, "SSS", "#ffff55"), (100, "SS", "#55ffff"),
+                (50,  "S", "#55ff55"),  (20,  "A", "#aaaaff"),
+                (5,   "B", GRAY),       (0,   "C", GRAY),
+            ]),
+        },
+        {
+            "title": "Repositories",
+            "value": f"{total_repos:,}",
+            "rank": rank(total_repos, [
+                (100, "SSS", "#ffff55"), (50, "SS", "#55ffff"),
+                (20,  "S", "#55ff55"), (10, "A", "#aaaaff"),
+                (5,   "B", GRAY),      (0,  "C", GRAY),
+            ]),
+        },
+        {
+            "title": "Followers",
+            "value": f"{total_followers:,}",
+            "rank": rank(total_followers, [
+                (500, "SSS", "#ffff55"), (200, "SS", "#55ffff"),
+                (100, "S", "#55ff55"),  (50,  "A", "#aaaaff"),
+                (10,  "B", GRAY),       (0,   "C", GRAY),
+            ]),
+        },
+        {
+            "title": "Contributions",
+            "value": f"{total_contribs:,}",
+            "rank": rank(total_contribs, [
+                (1000, "SSS", "#ffff55"), (500, "SS", "#55ffff"),
+                (200,  "S", "#55ff55"),  (100, "A", "#aaaaff"),
+                (50,   "B", GRAY),       (0,   "C", GRAY),
+            ]),
+        },
+    ]
+
+    W       = 860
+    HDR     = 24
+    COLS    = 6
+    CARD_W  = (W - 40) // COLS   # ~136px each
+    CARD_H  = 110
+    PAD     = 20
+    H       = HDR + PAD + CARD_H + PAD
+
+    cards = ""
+    for i, t in enumerate(trophies):
+        rank_label, rank_color = t["rank"]
+        cx = PAD // 2 + i * CARD_W + CARD_W // 2
+        cy = HDR + PAD
+
+        # card background
+        cards += f'  <rect x="{PAD//2 + i*CARD_W}" y="{HDR + PAD//2}" width="{CARD_W - 6}" height="{CARD_H}" fill="{BG2}" rx="4" stroke="{rank_color}" stroke-width="0.5" opacity="0.8"/>\n'
+
+        # rank badge — large, centred, colored
+        cards += f'  <text x="{cx}" y="{cy + 30}" font-size="28" fill="{rank_color}" font-family="\'Courier New\',monospace" text-anchor="middle" font-weight="bold">{rank_label}</text>\n'
+
+        # trophy icon (ASCII)
+        cards += f'  <text x="{cx}" y="{cy + 52}" font-size="13" fill="{rank_color}" font-family="\'Courier New\',monospace" text-anchor="middle" opacity="0.7">[&#9654;&#9658;]</text>\n'
+
+        # value
+        cards += f'  <text x="{cx}" y="{cy + 72}" font-size="13" fill="{WHITE}" font-family="\'Courier New\',monospace" text-anchor="middle" font-weight="bold">{t["value"]}</text>\n'
+
+        # title
+        cards += f'  <text x="{cx}" y="{cy + 89}" font-size="10" fill="{GRAY}" font-family="\'Courier New\',monospace" text-anchor="middle">{t["title"]}</text>\n'
+
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
+  <rect width="{W}" height="{H}" fill="{BG}"/>
+  <rect width="{W}" height="{HDR}" fill="{GRAY}"/>
+  <text x="10" y="{HDR-8}" font-size="11" fill="{BG}" font-family="'Courier New',monospace" font-weight="bold" letter-spacing="2">&#9632;  ACHIEVEMENT TROPHIES &#8212; {USERNAME}</text>
+  {cards}
+</svg>"""
+
+
+# ═════════════════════════════════════════════════════════════════
 # GITHUB DATA
 # ═════════════════════════════════════════════════════════════════
 
@@ -410,6 +525,11 @@ if __name__ == "__main__":
     svg2 = generate_activity_svg(days)
     with open("generated-activity.svg", "w") as f: f.write(svg2)
     print("  saved generated-activity.svg")
+
+    print("── Generating trophies ──")
+    svg3 = generate_trophies_svg(stats, days)
+    with open("generated-trophies.svg", "w") as f: f.write(svg3)
+    print("  saved generated-trophies.svg")
 
     print("── Articles ──")
     articles = fetch_articles()

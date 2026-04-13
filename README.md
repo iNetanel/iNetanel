@@ -125,14 +125,8 @@ Bio     : Infusing life's vibrance into technological craft.
 
 <br/>
 
-<!-- Trophies -->
-[![GitHub Trophies](https://github-profile-trophy-winning.vercel.app/?username=inetanel&theme=matrix&no-frame=true&no-bg=true&margin-w=8&column=6)](https://github.com/inetanel)
-
-<br/>
-
-<img src="section-snake.svg" width="100%" alt="Contribution Snake"/>
-
-![Snake](https://raw.githubusercontent.com/inetanel/inetanel/output/github-contribution-grid-snake-dark.svg)
+<!-- Trophies — generated locally by GitHub Action, no external service -->
+<img src="generated-trophies.svg" width="100%" alt="GitHub Trophies"/>
 
 </div>
 
