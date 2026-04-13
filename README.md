@@ -19,16 +19,9 @@
 
 <!-- ── GITHUB STATS ─────────────────────────────────────────────── -->
 <div align="center"><img src="section-stats.svg" width="100%" alt="GitHub Stats"/></div>
-<div align="center">
-
-
-<img src="generated-langs.svg" width="100%" alt="Language Radar"/>
-<img src="generated-activity.svg" width="100%" alt="Contribution Activity"/>
-<img src="generated-trophies.svg" width="100%" alt="Trophies"/>
-
-[![GitHub Streak](https://streak-stats.demolab.com?user=inetanel&theme=transparent&background=0000aa&ring=55ffff&fire=ffff55&currStreakLabel=55ffff&sideLabels=55ffff&currStreakNum=ffffff&sideNums=ffffff&dates=aaaaaa&border=55ffff&border_radius=0&width=860)](https://github.com/inetanel)
-
-</div>
+<div align="center"><img src="generated-langs.svg" width="100%" alt="Language Radar"/></div>
+<div align="center"><img src="generated-activity.svg" width="100%" alt="Contribution Activity"/></div>
+<div align="center"><img src="generated-trophies.svg" width="100%" alt="Trophies"/></div>
 
 <!-- ── ARTICLES — regenerated daily by Action ────────────────────── -->
 <div align="center"><img src="section-articles.svg" width="100%" alt="Articles"/></div>
