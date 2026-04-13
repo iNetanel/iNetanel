@@ -16,11 +16,6 @@
 
 <!-- ── TECH STACK ──────────────────────────────────────────────── -->
 <div align="center"><img src="section-stack.svg" width="100%" alt="Tech Stack"/></div>
-<div align="center">
-
-![Python](https://img.shields.io/badge/Python-0000aa?style=flat-square&logo=python&logoColor=55ffff)&nbsp;![TensorFlow](https://img.shields.io/badge/TensorFlow-0000aa?style=flat-square&logo=tensorflow&logoColor=55ffff)&nbsp;![PyTorch](https://img.shields.io/badge/PyTorch-0000aa?style=flat-square&logo=pytorch&logoColor=55ffff)&nbsp;![OpenAI](https://img.shields.io/badge/OpenAI-0000aa?style=flat-square&logo=openai&logoColor=55ffff)&nbsp;![LangChain](https://img.shields.io/badge/LangChain-0000aa?style=flat-square&logo=chainlink&logoColor=ffff55)&nbsp;![HuggingFace](https://img.shields.io/badge/HuggingFace-0000aa?style=flat-square&logo=huggingface&logoColor=ffff55)&nbsp;![JavaScript](https://img.shields.io/badge/JavaScript-0000aa?style=flat-square&logo=javascript&logoColor=55ffff)&nbsp;![TypeScript](https://img.shields.io/badge/TypeScript-0000aa?style=flat-square&logo=typescript&logoColor=55ffff)&nbsp;![Node.js](https://img.shields.io/badge/Node.js-0000aa?style=flat-square&logo=node.js&logoColor=55ffff)&nbsp;![React](https://img.shields.io/badge/React-0000aa?style=flat-square&logo=react&logoColor=55ffff)&nbsp;![AWS](https://img.shields.io/badge/AWS-0000aa?style=flat-square&logo=amazonaws&logoColor=55ffff)&nbsp;![Docker](https://img.shields.io/badge/Docker-0000aa?style=flat-square&logo=docker&logoColor=55ffff)&nbsp;![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-0000aa?style=flat-square&logo=githubactions&logoColor=55ffff)
-
-</div>
 
 <!-- ── GITHUB STATS ─────────────────────────────────────────────── -->
 <div align="center"><img src="section-stats.svg" width="100%" alt="GitHub Stats"/></div>

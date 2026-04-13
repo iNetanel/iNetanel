@@ -1,21 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="860" height="316" viewBox="0 0 860 316">
-  <rect width="860" height="316" fill="#0000aa"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="96" viewBox="0 0 860 96">
+  <rect width="860" height="96" fill="#0000aa"/>
   <rect width="860" height="28" fill="#aaaaaa"/>
   <rect x="0" y="0" width="4" height="28" fill="#0000aa"/>
   <text x="14" y="19" font-size="13" fill="#0000aa" font-family="'Courier New',monospace" font-weight="bold" letter-spacing="2">&#9632;  CONTACT</text>
   <text x="760" y="19" font-size="11" fill="#0000aa" font-family="'Courier New',monospace">[ F8 ]</text>
-  <rect x="12" y="34" width="836" height="276" fill="#00007a" rx="2" opacity="0.35"/>
-  <text x="20" y="57" font-size="12" fill="#ffffff" font-family="'Courier New',monospace" font-weight="normal">Email      :  medium.com/@inetanel</text>
-  <text x="20" y="77" font-size="12" fill="#ffffff" font-family="'Courier New',monospace" font-weight="normal">Phone      :  +44 (7570) 397-338</text>
-  <text x="20" y="97" font-size="12" fill="#ffffff" font-family="'Courier New',monospace" font-weight="normal">LinkedIn   :  linkedin.com/in/inetanel</text>
-  <text x="20" y="117" font-size="12" fill="#ffffff" font-family="'Courier New',monospace" font-weight="normal">Medium     :  medium.com/@inetanel</text>
-  <text x="20" y="137" font-size="12" fill="#ffffff" font-family="'Courier New',monospace" font-weight="normal">Crunchbase :  crunchbase.com/person/netanel-eliav</text>
-  <text x="20" y="157" font-size="12" fill="#ffffff" font-family="'Courier New',monospace" font-weight="normal">F6S        :  f6s.com/netanel</text>
-  <text x="20" y="177" font-size="10" fill="#55ffff" font-family="'Courier New',monospace" font-weight="normal">──────────────────────────────────────────────────────────────────────────</text>
-  <text x="20" y="197" font-size="12" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">Location   :  London, United Kingdom</text>
-  <text x="20" y="217" font-size="12" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">Open to    :  Strategic advisory and CTO engagements focused on AI-drive</text>
-  <text x="20" y="237" font-size="12" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">           :  Comprehensive technical due diligence for AI startups and </text>
-  <text x="20" y="257" font-size="12" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">           :  In-depth architecture reviews of AI products and agent-bas</text>
-  <text x="20" y="277" font-size="12" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">           :  Keynote presentations on practical challenges in AI implem</text>
-  <text x="20" y="297" font-size="10" fill="#55ffff" font-family="'Courier New',monospace" font-weight="normal">──────────────────────────────────────────────────────────────────────────</text>
+  <rect x="12" y="34" width="836" height="56" fill="#00007a" rx="2" opacity="0.35"/>
+  <text x="20" y="57" font-size="11" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">Auto-updated daily from inetanel.com/contact</text>
+  <text x="20" y="77" font-size="10" fill="#55ffff" font-family="'Courier New',monospace" font-weight="normal">──────────────────────────────────────────────────────────────────────────</text>
 </svg>
