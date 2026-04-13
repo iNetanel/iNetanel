@@ -143,7 +143,7 @@ Bio     : Infusing life's vibrance into technological craft.
 <!-- ARTICLES:START -->
 
 ```
-ARTICLES & PUBLICATIONS — 11 total  [ auto-updated: 2026-04-13 08:07 UTC ]
+ARTICLES & PUBLICATIONS — 11 total  [ auto-updated: 2026-04-13 08:09 UTC ]
 ───────────────────────────────────────────────────────────────────────
 [2026-04]  GPT-5.4 vs Claude Opus 4.6 for Coding
          → inetanel.com/articles/gpt-5-4-vs-claude-opus-4-6-coding
