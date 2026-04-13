@@ -4,5 +4,35 @@
   <rect x="0" y="0" width="4" height="28" fill="#0000aa"/>
   <text x="14" y="19" font-size="13" fill="#0000aa" font-family="'Courier New',monospace" font-weight="bold" letter-spacing="2">&#9632;  ACHIEVEMENT TROPHIES &#8212; inetanel</text>
   <text x="760" y="19" font-size="11" fill="#0000aa" font-family="'Courier New',monospace">[ F9 ]</text>
-  <text x="430" y="103" font-size="12" fill="#55ffff" font-family="'Courier New',monospace" text-anchor="middle">[ run: Actions &#8594; Update Profile README &#8594; Run workflow ]</text>
+    <rect x="10" y="38" width="130" height="110" fill="#00007a" rx="4" stroke="#ffff55" stroke-width="1" opacity="0.8"/>
+  <text x="78" y="78" font-size="28" fill="#ffff55" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">SSS</text>
+  <text x="78" y="100" font-size="13" fill="#ffff55" font-family="'Courier New',monospace" text-anchor="middle" opacity="0.7">[&#9654;&#9658;]</text>
+  <text x="78" y="120" font-size="13" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">1,082</text>
+  <text x="78" y="137" font-size="10" fill="#aaaaaa" font-family="'Courier New',monospace" text-anchor="middle">Commits</text>
+  <rect x="146" y="38" width="130" height="110" fill="#00007a" rx="4" stroke="#aaaaaa" stroke-width="1" opacity="0.8"/>
+  <text x="214" y="78" font-size="28" fill="#aaaaaa" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">C</text>
+  <text x="214" y="100" font-size="13" fill="#aaaaaa" font-family="'Courier New',monospace" text-anchor="middle" opacity="0.7">[&#9654;&#9658;]</text>
+  <text x="214" y="120" font-size="13" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">1</text>
+  <text x="214" y="137" font-size="10" fill="#aaaaaa" font-family="'Courier New',monospace" text-anchor="middle">Stars</text>
+  <rect x="282" y="38" width="130" height="110" fill="#00007a" rx="4" stroke="#ffff55" stroke-width="1" opacity="0.8"/>
+  <text x="350" y="78" font-size="28" fill="#ffff55" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">SSS</text>
+  <text x="350" y="100" font-size="13" fill="#ffff55" font-family="'Courier New',monospace" text-anchor="middle" opacity="0.7">[&#9654;&#9658;]</text>
+  <text x="350" y="120" font-size="13" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">275</text>
+  <text x="350" y="137" font-size="10" fill="#aaaaaa" font-family="'Courier New',monospace" text-anchor="middle">Pull Requests</text>
+  <rect x="418" y="38" width="130" height="110" fill="#00007a" rx="4" stroke="#55ffff" stroke-width="1" opacity="0.8"/>
+  <text x="486" y="78" font-size="28" fill="#55ffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">SS</text>
+  <text x="486" y="100" font-size="13" fill="#55ffff" font-family="'Courier New',monospace" text-anchor="middle" opacity="0.7">[&#9654;&#9658;]</text>
+  <text x="486" y="120" font-size="13" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">51</text>
+  <text x="486" y="137" font-size="10" fill="#aaaaaa" font-family="'Courier New',monospace" text-anchor="middle">Repositories</text>
+  <rect x="554" y="38" width="130" height="110" fill="#00007a" rx="4" stroke="#aaaaaa" stroke-width="1" opacity="0.8"/>
+  <text x="622" y="78" font-size="28" fill="#aaaaaa" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">C</text>
+  <text x="622" y="100" font-size="13" fill="#aaaaaa" font-family="'Courier New',monospace" text-anchor="middle" opacity="0.7">[&#9654;&#9658;]</text>
+  <text x="622" y="120" font-size="13" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">1</text>
+  <text x="622" y="137" font-size="10" fill="#aaaaaa" font-family="'Courier New',monospace" text-anchor="middle">Followers</text>
+  <rect x="690" y="38" width="130" height="110" fill="#00007a" rx="4" stroke="#ffff55" stroke-width="1" opacity="0.8"/>
+  <text x="758" y="78" font-size="28" fill="#ffff55" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">SSS</text>
+  <text x="758" y="100" font-size="13" fill="#ffff55" font-family="'Courier New',monospace" text-anchor="middle" opacity="0.7">[&#9654;&#9658;]</text>
+  <text x="758" y="120" font-size="13" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">1,717</text>
+  <text x="758" y="137" font-size="10" fill="#aaaaaa" font-family="'Courier New',monospace" text-anchor="middle">Contributions</text>
+
 </svg>
