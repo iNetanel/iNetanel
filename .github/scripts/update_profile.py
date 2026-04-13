@@ -446,56 +446,64 @@ def fetch_articles():
     print(f"[articles] {len(articles)} found")
     return articles
 
+# ─────────────────────────────────────────────────────────────────
+# SVG SECTION BUILDER — used by all dynamic sections
+# ─────────────────────────────────────────────────────────────────
+
+def make_section_svg(filename, title, fkey, rows):
+    """Generate a complete section SVG: gray bar + blue body with content rows."""
+    BG="#0000aa"; BG2="#00007a"; GRAY="#aaaaaa"; W=860; MONO="'Courier New',monospace"
+    HDR=28; PAD=14; LH=20
+    body_h = PAD + len(rows)*LH + PAD
+    H = HDR + body_h
+    def esc(s): return s.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
+    out  = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">\n'
+    out += f'  <rect width="{W}" height="{H}" fill="{BG}"/>\n'
+    out += f'  <rect width="{W}" height="{HDR}" fill="{GRAY}"/>\n'
+    out += f'  <rect x="0" y="0" width="4" height="{HDR}" fill="{BG}"/>\n'
+    out += f'  <text x="14" y="19" font-size="13" fill="{BG}" font-family="{MONO}" font-weight="bold" letter-spacing="2">&#9632;  {esc(title)}</text>\n'
+    if fkey:
+        out += f'  <text x="760" y="19" font-size="11" fill="{BG}" font-family="{MONO}">{fkey}</text>\n'
+    out += f'  <rect x="12" y="{HDR+6}" width="{W-24}" height="{body_h-12}" fill="{BG2}" rx="2" opacity="0.35"/>\n'
+    for i,(txt,col,fs,bold) in enumerate(rows):
+        y  = HDR + PAD + i*LH + LH - 5
+        fw = "bold" if bold else "normal"
+        out += f'  <text x="20" y="{y}" font-size="{fs}" fill="{col}" font-family="{MONO}" font-weight="{fw}">{esc(txt)}</text>\n'
+    out += '</svg>'
+    with open(filename, "w") as f: f.write(out)
+    return filename
+
+
+# ─────────────────────────────────────────────────────────────────
+# ARTICLES — generates section-articles.svg (complete, with bar)
+# ─────────────────────────────────────────────────────────────────
+
 def build_articles_block(articles):
-    """Generate per-article clickable SVGs + a header/footer SVG."""
-    now   = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
-    BG    = "#0000aa"; BG2 = "#00007a"; CYAN = "#55ffff"
-    YELLOW= "#ffff55"; WHITE = "#ffffff"; GRAY = "#aaaaaa"
-    W = 860; MONO = "'Courier New',monospace"; PAD = 14; LH = 19
+    now  = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    CYAN="#55ffff"; YELLOW="#ffff55"; WHITE="#ffffff"; GRAY="#aaaaaa"
 
-    # Header
-    hdr_h = PAD + 2*LH + PAD//2
-    hdr = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{hdr_h}" viewBox="0 0 {W} {hdr_h}">\n'
-    hdr += f'  <rect width="{W}" height="{hdr_h}" fill="{BG}"/>\n'
-    hdr += f'  <rect x="14" y="6" width="{W-28}" height="{hdr_h-12}" fill="{BG2}" rx="2" opacity="0.4"/>\n'
-    hdr += f'  <text x="20" y="{PAD+LH-2}" font-size="11" fill="{CYAN}" font-family="{MONO}" font-weight="bold">ARTICLES &amp; PUBLICATIONS &#8212; {len(articles)} total  [ updated: {now} ]</text>\n'
-    hdr += f'  <text x="20" y="{PAD+LH*2-2}" font-size="10" fill="{GRAY}" font-family="{MONO}">{"─"*72}</text>\n'
-    hdr += '</svg>'
-    with open("block-articles-header.svg", "w") as f: f.write(hdr)
-
-    lines = ['<div align="center"><img src="block-articles-header.svg" width="100%" alt="Articles"/></div>']
-
+    rows = []
+    rows.append((f"Updated: {now}  ·  {len(articles)} articles", GRAY, 10, False))
+    rows.append(("─"*74, CYAN, 10, False))
     for a in articles:
         date  = f"[{a['date']}]" if a["date"] else "        "
-        title = a["title"]
-        if len(title) > 72: title = title[:69] + "..."
-        url   = a["url"]
-        disp  = url.replace("https://","").replace("http://","")
-        if len(disp) > 65: disp = disp[:62] + "..."
+        title = a["title"] if len(a["title"]) <= 72 else a["title"][:69]+"..."
+        url   = a["url"].replace("https://","").replace("http://","")
+        if len(url) > 65: url = url[:62]+"..."
         tags  = "  ".join(f"#{t}" for t in a["tags"]) if a["tags"] else ""
-        tag_rows = 1 if tags else 0
-        row_h = PAD + (2 + tag_rows) * LH + PAD//2
+        rows.append((f"{date}  {title}", WHITE, 12, False))
+        if tags: rows.append((f"            {tags}", YELLOW, 11, False))
+        rows.append((f"            → {url}", CYAN, 11, False))
+        rows.append(("", GRAY, 10, False))
+    rows.append(("─"*74, CYAN, 10, False))
 
-        def esc(s): return s.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
+    make_section_svg("section-articles.svg", "ARTICLES & PUBLICATIONS", "[ F3 ]", rows)
+    return '<div align="center"><img src="section-articles.svg" width="100%" alt="Articles"/></div>'
 
-        svg  = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{row_h}" viewBox="0 0 {W} {row_h}">\n'
-        svg += f'  <rect width="{W}" height="{row_h}" fill="{BG}"/>\n'
-        svg += f'  <text x="20" y="{PAD+LH-2}" font-size="12" fill="{WHITE}" font-family="{MONO}">{esc(date)}  {esc(title)}</text>\n'
-        if tags:
-            svg += f'  <text x="20" y="{PAD+LH*2-2}" font-size="11" fill="{YELLOW}" font-family="{MONO}">            {esc(tags)}</text>\n'
-        svg += f'  <text x="20" y="{PAD+LH*(2+tag_rows)-2}" font-size="11" fill="{CYAN}" font-family="{MONO}">            &#8594; {esc(disp)}</text>\n'
-        svg += '</svg>'
 
-        fname = f"block-article-{abs(hash(url)) % 100000}.svg"
-        with open(fname, "w") as f: f.write(svg)
-        lines.append(f'<a href="{url}"><img src="{fname}" width="100%" alt="{esc(title[:60])}"/></a>')
-
-    # Footer
-    ftr = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="20" viewBox="0 0 {W} 20"><rect width="{W}" height="20" fill="{BG}"/><rect x="14" y="0" width="{W-28}" height="20" fill="{BG2}" rx="2" opacity="0.4"/><text x="20" y="14" font-size="10" fill="{GRAY}" font-family="{MONO}">{"─"*72}</text></svg>'
-    with open("block-articles-footer.svg", "w") as f: f.write(ftr)
-    lines.append('<div align="center"><img src="block-articles-footer.svg" width="100%" alt=""/></div>')
-    return "\n".join(lines)
-
+# ─────────────────────────────────────────────────────────────────
+# PROJECTS — generates section-projects.svg (complete, with bar)
+# ─────────────────────────────────────────────────────────────────
 
 def fetch_projects():
     try:
@@ -505,7 +513,7 @@ def fetch_projects():
         for h2 in soup.find_all("h2"):
             name = h2.get_text(strip=True)
             if not name or name in ["Projects","Main Menu"]: continue
-            stage = ""; status = ""; desc_parts = []; first_url = ""
+            stage=""; status=""; desc_parts=[]; first_url=""
             node = h2.find_next_sibling()
             p_count = 0
             while node and node.name not in ["h2","h1"]:
@@ -523,7 +531,7 @@ def fetch_projects():
                         desc_parts.append(li.get_text(strip=True))
                 node = node.find_next_sibling()
             desc = " ".join(desc_parts[:2])
-            if len(desc) > 200: desc = desc[:197] + "..."
+            if len(desc) > 200: desc = desc[:197]+"..."
             projects.append({"name":name,"stage":stage,"status":status,"desc":desc,"url":first_url})
         print(f"[projects] {len(projects)} found")
         return projects
@@ -532,110 +540,91 @@ def fetch_projects():
 
 
 def build_projects_block(projects):
-    BG="#0000aa"; BG2="#00007a"; CYAN="#55ffff"; YELLOW="#ffff55"; WHITE="#ffffff"; GRAY="#aaaaaa"
-    W=860; MONO="'Courier New',monospace"; PAD=14; LH=19
+    now  = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    CYAN="#55ffff"; YELLOW="#ffff55"; WHITE="#ffffff"; GRAY="#aaaaaa"
 
-    def esc(s): return s.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
-
-    # Header
-    hdr = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{PAD+2*LH+PAD//2}" viewBox="0 0 {W} {PAD+2*LH+PAD//2}"><rect width="{W}" height="{PAD+2*LH+PAD//2}" fill="{BG}"/><rect x="14" y="6" width="{W-28}" height="{PAD+2*LH+PAD//2-12}" fill="{BG2}" rx="2" opacity="0.4"/><text x="20" y="{PAD+LH-2}" font-size="11" fill="{CYAN}" font-family="{MONO}" font-weight="bold">PROJECTS</text><text x="20" y="{PAD+LH*2-2}" font-size="10" fill="{GRAY}" font-family="{MONO}">{"─"*72}</text></svg>'
-    with open("block-projects-header.svg","w") as f: f.write(hdr)
-    lines = ['<div align="center"><img src="block-projects-header.svg" width="100%" alt="Projects"/></div>']
-
-    for p in projects:
-        words = p["desc"].split()
-        dl = []; cur = ""
+    def wrap(text, maxlen=78):
+        words=text.split(); lines=[]; cur=""
         for w in words:
-            if len(cur)+len(w)+1 > 82: dl.append(cur.strip()); cur = w+" "
-            else: cur += w+" "
-        if cur: dl.append(cur.strip())
-        dl = dl[:3]
-        row_h = PAD + LH + LH + len(dl)*LH + PAD
-        texts = ""
-        texts += f'  <text x="20" y="{PAD+LH-2}" font-size="14" fill="{YELLOW}" font-family="{MONO}" font-weight="bold">{esc(p["name"])}</text>\n'
-        texts += f'  <text x="20" y="{PAD+LH*2-2}" font-size="11" fill="{CYAN}" font-family="{MONO}">{esc(p["stage"])}  ·  {esc(p["status"])}</text>\n'
-        for i,line in enumerate(dl):
-            texts += f'  <text x="20" y="{PAD+LH*(3+i)-2}" font-size="12" fill="{WHITE}" font-family="{MONO}">{esc(line)}</text>\n'
-        svg = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{row_h}" viewBox="0 0 {W} {row_h}"><rect width="{W}" height="{row_h}" fill="{BG}"/><rect x="14" y="6" width="{W-28}" height="{row_h-12}" fill="{BG2}" rx="2" opacity="0.4"/>\n{texts}</svg>'
-        fname = f"block-project-{abs(hash(p['name']))%100000}.svg"
-        with open(fname,"w") as f: f.write(svg)
-        if p["url"]:
-            lines.append(f'<a href="{p["url"]}"><img src="{fname}" width="100%" alt="{esc(p["name"])}"/></a>')
-        else:
-            lines.append(f'<div align="center"><img src="{fname}" width="100%" alt="{esc(p["name"])}"/></div>')
+            if len(cur)+len(w)+1>maxlen: lines.append(cur.strip()); cur=w+" "
+            else: cur+=w+" "
+        if cur: lines.append(cur.strip())
+        return lines
 
-    ftr = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="20" viewBox="0 0 {W} 20"><rect width="{W}" height="20" fill="{BG}"/><rect x="14" y="0" width="{W-28}" height="20" fill="{BG2}" rx="2" opacity="0.4"/><text x="20" y="14" font-size="10" fill="{GRAY}" font-family="{MONO}">{"─"*72}</text></svg>'
-    with open("block-projects-footer.svg","w") as f: f.write(ftr)
-    lines.append('<div align="center"><img src="block-projects-footer.svg" width="100%" alt=""/></div>')
-    return "\n".join(lines)
+    rows = []
+    rows.append((f"Updated: {now}  ·  {len(projects)} projects", GRAY, 10, False))
+    rows.append(("─"*74, CYAN, 10, False))
+    for p in projects:
+        rows.append((p["name"], YELLOW, 14, True))
+        meta = []
+        if p.get("stage"): meta.append(p["stage"])
+        if p.get("status"): meta.append(p["status"])
+        if meta: rows.append(("  " + "  ·  ".join(meta), CYAN, 11, False))
+        for dl in wrap(p.get("desc",""), 80)[:3]:
+            rows.append(("  " + dl, WHITE, 12, False))
+        if p.get("url"):
+            disp = p["url"].replace("https://","").replace("http://","")
+            rows.append(("  → " + disp, CYAN, 11, False))
+        rows.append(("─"*74, CYAN, 10, False))
 
+    make_section_svg("section-projects.svg", "PROJECTS", "[ F6 ]", rows)
+    return '<div align="center"><img src="section-projects.svg" width="100%" alt="Projects"/></div>'
+
+
+# ─────────────────────────────────────────────────────────────────
+# CONTACT — generates section-contact.svg (complete, with bar)
+# ─────────────────────────────────────────────────────────────────
 
 def fetch_contact():
-    """Fetch contact info from inetanel.com/contact."""
     try:
         resp = requests.get("https://inetanel.com/contact", timeout=15)
         soup = BeautifulSoup(resp.text, "html.parser")
         info = {}
-        # Find all links
         for a in soup.find_all("a", href=True):
-            href = a["href"]
-            text = a.get_text(strip=True)
-            if "mailto:" in href or "@" in text:
-                info["email"] = text if "@" in text else href.replace("mailto:","")
-            elif "tel:" in href:
-                info["phone"] = text
-            elif "linkedin.com" in href:
-                info["linkedin"] = href.replace("https://www.","").replace("https://","")
-            elif "medium.com" in href:
-                info["medium"] = href.replace("https://","")
-            elif "crunchbase.com" in href and "person" in href:
-                info["crunchbase"] = href.replace("https://www.","").replace("https://","")
-            elif "f6s.com" in href:
-                info["f6s"] = href.replace("https://www.","").replace("https://","")
-        # Location
-        for p in soup.find_all(["p","li"]):
+            href = a["href"]; text = a.get_text(strip=True)
+            if "mailto:" in href or ("@" in text and "." in text):
+                raw = href.replace("mailto:","") if "mailto:" in href else text
+                if "@" in raw and not raw.startswith("["): info["email"] = raw
+            elif "tel:" in href: info["phone"] = text
+            elif "linkedin.com" in href: info["linkedin"] = href.replace("https://www.","").replace("https://","")
+            elif "medium.com" in href: info["medium"] = href.replace("https://","")
+            elif "crunchbase.com" in href and "person" in href: info["crunchbase"] = href.replace("https://www.","").replace("https://","")
+            elif "f6s.com" in href: info["f6s"] = href.replace("https://www.","").replace("https://","")
+        for p in soup.find_all(["p","li","div"]):
             t = p.get_text(strip=True)
-            if "London" in t or "United Kingdom" in t:
-                info["location"] = "London, United Kingdom"
-                break
-        # Availability items
+            if "London" in t or "United Kingdom" in t: info["location"] = "London, United Kingdom"; break
         avail = []
         for li in soup.find_all("li"):
             t = li.get_text(strip=True)
-            if any(w in t.lower() for w in ["advisory","mentor","due diligence","keynote","architecture","panel","social good","antisemitism"]):
+            if any(w in t.lower() for w in ["advisory","mentor","due diligence","keynote","architecture","panel","social good"]):
                 avail.append(t[:70])
-        info["availability"] = avail[:6]
+        info["availability"] = avail[:5]
         print(f"[contact] fetched: {list(info.keys())}")
         return info
     except Exception as e:
-        print(f"[contact] {e}")
-        return {}
+        print(f"[contact] {e}"); return {}
 
 
 def build_contact_block(contact=None):
-    BG="#0000aa"; BG2="#00007a"; CYAN="#55ffff"; YELLOW="#ffff55"; WHITE="#ffffff"; GRAY="#aaaaaa"
-    W=860; MONO="'Courier New',monospace"; PAD=14; LH=20
-
-    # Use fetched data if available, fallback to hardcoded
-    email      = contact.get("email","netanel@inetanel.com") if contact else "netanel@inetanel.com"
-    phone      = contact.get("phone","+44 (7570) 397-338") if contact else "+44 (7570) 397-338"
-    linkedin   = contact.get("linkedin","linkedin.com/in/inetanel") if contact else "linkedin.com/in/inetanel"
-    medium     = contact.get("medium","medium.com/@inetanel") if contact else "medium.com/@inetanel"
-    crunchbase = contact.get("crunchbase","crunchbase.com/person/netanel-eliav") if contact else "crunchbase.com/person/netanel-eliav"
-    f6s        = contact.get("f6s","f6s.com/netanel") if contact else "f6s.com/netanel"
-    location   = contact.get("location","London, United Kingdom") if contact else "London, United Kingdom"
-    avail      = contact.get("availability",[]) if contact else []
+    CYAN="#55ffff"; YELLOW="#ffff55"; WHITE="#ffffff"; GRAY="#aaaaaa"
+    c = contact or {}
+    email    = c.get("email","netanel@inetanel.com")
+    phone    = c.get("phone","+44 (7570) 397-338")
+    linkedin = c.get("linkedin","linkedin.com/in/inetanel")
+    medium   = c.get("medium","medium.com/@inetanel")
+    cbase    = c.get("crunchbase","crunchbase.com/person/netanel-eliav")
+    f6s      = c.get("f6s","f6s.com/netanel")
+    location = c.get("location","London, United Kingdom")
+    avail    = c.get("availability",[])
 
     rows = [
-        ("CONTACT INFORMATION", YELLOW, 13, True),
-        ("─"*70, CYAN, 10, False),
         (f"Email      :  {email}", WHITE, 12, False),
         (f"Phone      :  {phone}", WHITE, 12, False),
         (f"LinkedIn   :  {linkedin}", WHITE, 12, False),
         (f"Medium     :  {medium}", WHITE, 12, False),
-        (f"Crunchbase :  {crunchbase}", WHITE, 12, False),
+        (f"Crunchbase :  {cbase}", WHITE, 12, False),
         (f"F6S        :  {f6s}", WHITE, 12, False),
-        ("─"*70, CYAN, 10, False),
+        ("─"*74, CYAN, 10, False),
         (f"Location   :  {location}", GRAY, 12, False),
     ]
     if avail:
@@ -645,19 +634,10 @@ def build_contact_block(contact=None):
     else:
         rows.append(("Open to    :  Advisory · Due Diligence · Architecture Reviews", GRAY, 12, False))
         rows.append(("           :  Keynotes · Mentorship · AI for Good", GRAY, 12, False))
-    rows.append(("─"*70, CYAN, 10, False))
+    rows.append(("─"*74, CYAN, 10, False))
 
-    H = PAD + len(rows)*LH + PAD
-    texts = ""
-    for i,(txt,col,fs,bold) in enumerate(rows):
-        y = PAD + i*LH + LH - 4
-        fw = "bold" if bold else "normal"
-        txt_safe = txt.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
-        texts += f'  <text x="20" y="{y}" font-size="{fs}" fill="{col}" font-family="{MONO}" font-weight="{fw}">{txt_safe}</text>\n'
-    svg = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}"><rect width="{W}" height="{H}" fill="{BG}"/><rect x="14" y="8" width="{W-28}" height="{H-16}" fill="{BG2}" rx="2" opacity="0.4"/>\n{texts}</svg>'
-    with open("block-contact.svg","w") as f: f.write(svg)
-    return '<a href="https://inetanel.com/contact"><img src="block-contact.svg" width="100%" alt="Contact"/></a>'
-
+    make_section_svg("section-contact.svg", "CONTACT", "[ F8 ]", rows)
+    return '<a href="https://inetanel.com/contact"><img src="section-contact.svg" width="100%" alt="Contact"/></a>'
 
 
 
@@ -670,26 +650,14 @@ def rewrite_readme(articles, stats, projects, contact):
     with open(README_PATH, "r", encoding="utf-8") as f:
         content = f.read()
 
-    # Articles
-    art_block = build_articles_block(articles)
-    content = re.sub(
-        r"(<!-- ARTICLES:START -->).*?(<!-- ARTICLES:END -->)",
-        f"<!-- ARTICLES:START -->\n\n{art_block}\n\n<!-- ARTICLES:END -->",
-        content, flags=re.DOTALL)
+    # Articles — regenerates section-articles.svg directly (no marker swap needed)
+    build_articles_block(articles)
 
-    # Projects
-    proj_block = build_projects_block(projects)
-    content = re.sub(
-        r"(<!-- PROJECTS:START -->).*?(<!-- PROJECTS:END -->)",
-        f"<!-- PROJECTS:START -->\n\n{proj_block}\n\n<!-- PROJECTS:END -->",
-        content, flags=re.DOTALL)
+    # Projects — regenerates section-projects.svg directly
+    build_projects_block(projects)
 
-    # Contact
-    contact_block = build_contact_block(contact)
-    content = re.sub(
-        r"(<!-- CONTACT:START -->).*?(<!-- CONTACT:END -->)",
-        f"<!-- CONTACT:START -->\n\n{contact_block}\n\n<!-- CONTACT:END -->",
-        content, flags=re.DOTALL)
+    # Contact — regenerates section-contact.svg directly
+    build_contact_block(contact)
 
     # Stats badges
     year = datetime.utcnow().year
