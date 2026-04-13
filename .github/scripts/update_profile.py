@@ -74,7 +74,7 @@ def generate_trophies_svg(stats, days):
     svg += f'  <rect width="{W}" height="{H}" fill="{BG}"/>\n'
     svg += f'  <rect width="{W}" height="{HDR}" fill="{GRAY}"/>\n'
     svg += f'  <rect x="0" y="0" width="4" height="{HDR}" fill="{BG}"/>\n'
-    svg += f'  <text x="14" y="19" font-size="13" fill="{BG}" font-family="{MONO}" font-weight="bold" letter-spacing="2">&#9632;  GITHUB STATS &#8212; {USERNAME}</text>\n'
+    svg += f'  <text x="14" y="19" font-size="13" fill="{BG}" font-family="{MONO}" font-weight="bold" letter-spacing="2">&#9632;  GITHUB STATS {datetime.utcnow().year} &#8212; {USERNAME}</text>\n'
     svg += f'  <text x="760" y="19" font-size="11" fill="{BG}" font-family="{MONO}">[ F9 ]</text>\n'
 
     for i, (label, value, color) in enumerate(metrics):
@@ -308,7 +308,8 @@ def generate_activity_svg(days):
     grid_w   = COLS * (CELL + GAP) - GAP
     grid_h   = ROWS_G * (CELL + GAP) - GAP
     offset_x = (W - grid_w) // 2
-    H        = HDR + PAD_Y + grid_h + PAD_Y + 18
+    MONTH_H  = 16
+    H        = HDR + PAD_Y + MONTH_H + grid_h + PAD_Y + 18
 
     if not days:
         days = [0] * (COLS * ROWS_G)
@@ -328,6 +329,20 @@ def generate_activity_svg(days):
         days = [0] + days
     days = days[-(COLS * ROWS_G):]
 
+    # Month labels — figure out which column each month starts at
+    from datetime import date, timedelta
+    today      = date.today()
+    start_date = today - timedelta(weeks=52)
+    month_cols = {}
+    for col in range(COLS):
+        d = start_date + timedelta(weeks=col)
+        key = (d.year, d.month)
+        if key not in month_cols:
+            month_cols[key] = col
+    MONTH_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+
+    # Month labels sit above the grid — add extra space
+    MONTH_H = 16
     cells = ""
     for col in range(COLS):
         for row in range(ROWS_G):
@@ -336,13 +351,21 @@ def generate_activity_svg(days):
             lvl   = level(cnt)
             color = DOT[lvl]
             x     = offset_x + col * (CELL + GAP)
-            y     = HDR + PAD_Y + row * (CELL + GAP)
+            y     = HDR + PAD_Y + MONTH_H + row * (CELL + GAP)
             extra = f' filter="url(#glow)"' if lvl == 4 else ""
             cells += f'\n  <rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" fill="{color}" rx="2"{extra}/>'
 
+    # Draw month labels
+    month_labels = ""
+    for (yr, mo), col in month_cols.items():
+        if col > 0:  # skip first partial month
+            mx = offset_x + col * (CELL + GAP)
+            my = HDR + PAD_Y + MONTH_H - 4
+            month_labels += f'\n  <text x="{mx}" y="{my}" font-size="10" fill="{GRAY}" font-family="\'Courier New\',monospace">{MONTH_NAMES[mo-1]}</text>'
+
     # legend
     leg_x = offset_x
-    leg_y = HDR + PAD_Y + grid_h + PAD_Y + 2
+    leg_y = HDR + PAD_Y + MONTH_H + grid_h + PAD_Y + 2
     legend = f'<text x="{leg_x}" y="{leg_y+10}" font-size="10" fill="{GRAY}" font-family="\'Courier New\',monospace">Less</text>'
     for i, c in enumerate(DOT):
         lx = leg_x + 36 + i * 17
@@ -360,6 +383,7 @@ def generate_activity_svg(days):
   <rect width="{W}" height="{H}" fill="{BG}"/>
   <rect width="{W}" height="{HDR}" fill="{GRAY}"/>
   <text x="10" y="{HDR-8}" font-size="11" fill="{BG}" font-family="'Courier New',monospace" font-weight="bold" letter-spacing="2">&#9632;  CONTRIBUTION ACTIVITY &#8212; last 12 months</text>
+  {month_labels}
   {cells}
   {legend}
 </svg>"""
