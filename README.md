@@ -27,7 +27,13 @@
 <div align="center">
 
 <!-- STATS-BADGES:START -->
-![Stars](https://img.shields.io/badge/Stars-0-ffff55?style=flat-square&labelColor=0000aa&color=0000aa)&nbsp;![Commits](https://img.shields.io/badge/Commits_2026-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)&nbsp;![PRs](https://img.shields.io/badge/Pull_Requests-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)&nbsp;![Followers](https://img.shields.io/badge/Followers-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)&nbsp;![Repos](https://img.shields.io/badge/Repos-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+
+![Stars](https://img.shields.io/badge/Stars-1-ffff55?style=flat-square&labelColor=0000aa&color=0000aa)
+![Commits](https://img.shields.io/badge/Commits_2026-1076-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+![PRs](https://img.shields.io/badge/Pull_Requests-275-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+![Followers](https://img.shields.io/badge/Followers-1-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+![Repos](https://img.shields.io/badge/Repos-3-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+
 <!-- STATS-BADGES:END -->
 
 <img src="generated-langs.svg" width="100%" alt="Language Radar"/>
