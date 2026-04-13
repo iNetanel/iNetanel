@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="860" height="288" viewBox="0 0 860 288"><rect width="860" height="288" fill="#0000aa"/><rect x="14" y="8" width="832" height="272" fill="#00007a" rx="2" opacity="0.4"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="328" viewBox="0 0 860 328"><rect width="860" height="328" fill="#0000aa"/><rect x="14" y="8" width="832" height="312" fill="#00007a" rx="2" opacity="0.4"/>
   <text x="20" y="30" font-size="13" fill="#ffff55" font-family="'Courier New',monospace" font-weight="bold">CONTACT INFORMATION</text>
   <text x="20" y="50" font-size="10" fill="#55ffff" font-family="'Courier New',monospace" font-weight="normal">──────────────────────────────────────────────────────────────────────</text>
-  <text x="20" y="70" font-size="12" fill="#ffffff" font-family="'Courier New',monospace" font-weight="normal">Email      :  netanel@inetanel.com</text>
+  <text x="20" y="70" font-size="12" fill="#ffffff" font-family="'Courier New',monospace" font-weight="normal">Email      :  medium.com/@inetanel</text>
   <text x="20" y="90" font-size="12" fill="#ffffff" font-family="'Courier New',monospace" font-weight="normal">Phone      :  +44 (7570) 397-338</text>
   <text x="20" y="110" font-size="12" fill="#ffffff" font-family="'Courier New',monospace" font-weight="normal">LinkedIn   :  linkedin.com/in/inetanel</text>
   <text x="20" y="130" font-size="12" fill="#ffffff" font-family="'Courier New',monospace" font-weight="normal">Medium     :  medium.com/@inetanel</text>
@@ -9,7 +9,9 @@
   <text x="20" y="170" font-size="12" fill="#ffffff" font-family="'Courier New',monospace" font-weight="normal">F6S        :  f6s.com/netanel</text>
   <text x="20" y="190" font-size="10" fill="#55ffff" font-family="'Courier New',monospace" font-weight="normal">──────────────────────────────────────────────────────────────────────</text>
   <text x="20" y="210" font-size="12" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">Location   :  London, United Kingdom</text>
-  <text x="20" y="230" font-size="12" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">Open to    :  Advisory · Due Diligence · Architecture Reviews</text>
-  <text x="20" y="250" font-size="12" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">           :  Keynotes · Mentorship · AI for Good</text>
-  <text x="20" y="270" font-size="10" fill="#55ffff" font-family="'Courier New',monospace" font-weight="normal">──────────────────────────────────────────────────────────────────────</text>
+  <text x="20" y="230" font-size="12" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">Open to    :  CTO Advisory with focus on strategic AI integration</text>
+  <text x="20" y="250" font-size="12" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">           :  Technical Due Diligence for AI-focused startups and ventur</text>
+  <text x="20" y="270" font-size="12" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">           :  In-depth Architecture Reviews of AI products and platforms</text>
+  <text x="20" y="290" font-size="12" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">           :  Keynote talks on pragmatic AI deployment and leadership</text>
+  <text x="20" y="310" font-size="10" fill="#55ffff" font-family="'Courier New',monospace" font-weight="normal">──────────────────────────────────────────────────────────────────────</text>
 </svg>
