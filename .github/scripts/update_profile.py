@@ -562,11 +562,16 @@ def fetch_contact():
         for a in soup.find_all("a", href=True):
             href = a["href"]; text = a.get_text(strip=True)
             # email skipped — Cloudflare obfuscates it, hardcoded in build_contact_block
-            if "tel:" in href: info["phone"] = text
-            elif "linkedin.com" in href: info["linkedin"] = href.replace("https://www.","").replace("https://","")
-            elif "medium.com" in href: info["medium"] = href.replace("https://","")
-            elif "crunchbase.com" in href and "person" in href: info["crunchbase"] = href.replace("https://www.","").replace("https://","")
-            elif "f6s.com" in href: info["f6s"] = href.replace("https://www.","").replace("https://","")
+            if "tel:" in href:
+                info["phone"] = text
+            elif "linkedin.com/in/" in href:
+                info["linkedin"] = href.replace("https://www.","").replace("https://","")
+            elif "medium.com/@" in href:
+                info["medium"] = href.replace("https://","")
+            elif "crunchbase.com/person/" in href:
+                info["crunchbase"] = href.replace("https://www.","").replace("https://","")
+            elif "f6s.com/" in href and "f6s.com/netanel" in href:
+                info["f6s"] = href.replace("https://www.","").replace("https://","")
         for p in soup.find_all(["p","li","div"]):
             t = p.get_text(strip=True)
             if "London" in t or "United Kingdom" in t: info["location"] = "London, United Kingdom"; break
@@ -585,7 +590,7 @@ def fetch_contact():
 def build_contact_block(contact=None):
     CYAN="#55ffff"; YELLOW="#ffff55"; WHITE="#ffffff"; GRAY="#aaaaaa"
     c = contact or {}
-    email    = "netanel@inetanel.com"  # hardcoded — Cloudflare blocks scraping
+    email    = "inetanel@me.com"  # hardcoded — Cloudflare blocks scraping
     phone    = c.get("phone","+44 (7570) 397-338")
     linkedin = c.get("linkedin","linkedin.com/in/inetanel")
     medium   = c.get("medium","medium.com/@inetanel")
