@@ -16,6 +16,9 @@
 <div align="center"><a href="https://github.com/inetanel"><img src="generated-activity.svg" width="100%" alt="Contribution Activity"/></a></div>
 <div align="center"><a href="https://github.com/inetanel"><img src="generated-trophies.svg" width="100%" alt="Trophies"/></a></div>
 
+<!-- ── ORGANISATIONS — regenerated daily by Action ──────────────────── -->
+<div align="center"><a href="https://github.com/inetanel"><img src="section-orgs.svg" width="100%" alt="Organisations"/></a></div>
+
 <!-- ── ARTICLES — regenerated daily by Action ────────────────────── -->
 <div align="center"><a href="https://inetanel.com/articles"><img src="section-articles.svg" width="100%" alt="Articles"/></a></div>
 

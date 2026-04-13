@@ -26,7 +26,7 @@ CYAN    = "#55ffff"
 YELLOW  = "#ffff55"
 WHITE   = "#ffffff"
 GRAY    = "#aaaaaa"
-DOT     = ["none", "#4dacff", "#1a94ff", "#007ae6", "#005fb3"]
+DOT     = ["none", "#0a38b0", "#105eb0", "#1a78d0", "#80d4ff"]
 LANG_COLORS = [CYAN, YELLOW, "#55ff55", "#ff55ff", "#ff9955", "#aaaaff", "#ff5555"]
 
 
@@ -333,6 +333,11 @@ def generate_activity_svg(days):
     from datetime import date, timedelta
     today      = date.today()
     start_date = today - timedelta(weeks=52)
+    # Also calculate which cells are in the future
+    total_days = COLS * ROWS_G
+    days_since_start = (today - start_date).days
+    future_start_idx = days_since_start + 1  # everything after today is future
+
     month_cols = {}
     for col in range(COLS):
         d = start_date + timedelta(weeks=col)
@@ -346,15 +351,18 @@ def generate_activity_svg(days):
     cells = ""
     for col in range(COLS):
         for row in range(ROWS_G):
-            idx   = col * ROWS_G + row
-            cnt   = days[idx] if idx < len(days) else 0
-            lvl   = level(cnt)
-            color = DOT[lvl]
-            x     = offset_x + col * (CELL + GAP)
-            y     = HDR + PAD_Y + MONTH_H + row * (CELL + GAP)
-            extra = f' filter="url(#glow)"' if lvl == 4 else ""
-            fill  = "none" if lvl == 0 else color
-            cells += f'\n  <rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" fill="{fill}" stroke="#cccccc" stroke-width="0.5" rx="2"{extra}/>'
+            idx      = col * ROWS_G + row
+            is_future = idx >= future_start_idx
+            cnt      = 0 if is_future else (days[idx] if idx < len(days) else 0)
+            lvl      = 0 if is_future else level(cnt)
+            color    = DOT[lvl]
+            x        = offset_x + col * (CELL + GAP)
+            y        = HDR + PAD_Y + MONTH_H + row * (CELL + GAP)
+            extra    = f' filter="url(#glow)"' if lvl == 4 else ""
+            fill     = "none" if lvl == 0 else color
+            # future cells have no border either
+            stroke   = "none" if is_future else "#cccccc"
+            cells   += f'\n  <rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" fill="{fill}" stroke="{stroke}" stroke-width="0.5" rx="2"{extra}/>'
 
     # Draw month labels
     month_labels = ""
@@ -630,6 +638,127 @@ def build_contact_block(contact=None):
 # README REWRITE
 # ═════════════════════════════════════════════════════════════════
 
+# ═════════════════════════════════════════════════════════════════
+# ORGANISATIONS
+# ═════════════════════════════════════════════════════════════════
+
+def fetch_orgs():
+    """Fetch all organisations the user belongs to via authenticated API."""
+    orgs = []
+    try:
+        page = 1
+        while True:
+            data = gh_get("https://api.github.com/user/orgs",
+                          {"per_page": 100, "page": page})
+            if not data or not isinstance(data, list): break
+            for org in data:
+                login   = org.get("login", "")
+                avatar  = org.get("avatar_url", "")
+                desc    = org.get("description", "") or ""
+                if login:
+                    orgs.append({"login": login, "avatar": avatar, "desc": desc[:40]})
+            if len(data) < 100: break
+            page += 1
+    except Exception as e:
+        print(f"[orgs] {e}")
+    return orgs
+
+
+def generate_orgs_svg(orgs):
+    """Generate BIOS-style organisations section with circular avatars."""
+    import base64, urllib.request
+
+    BG    = "#0000aa"
+    BG2   = "#00007a"
+    GRAY  = "#aaaaaa"
+    CYAN  = "#55ffff"
+    WHITE = "#ffffff"
+    W     = 860
+    MONO  = "'Courier New',monospace"
+    HDR   = 28
+
+    if not orgs:
+        # Empty state
+        H = HDR + 60
+        return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
+  <rect width="{W}" height="{H}" fill="{BG}"/>
+  <rect width="{W}" height="{HDR}" fill="{GRAY}"/>
+  <rect x="0" y="0" width="4" height="{HDR}" fill="{BG}"/>
+  <text x="14" y="19" font-size="13" fill="{BG}" font-family="{MONO}" font-weight="bold" letter-spacing="2">&#9632;  GITHUB ORGANISATIONS</text>
+  <text x="720" y="19" font-size="11" fill="{BG}" font-family="{MONO}">[ F10 ]</text>
+  <text x="430" y="{HDR+38}" font-size="12" fill="{CYAN}" font-family="{MONO}" text-anchor="middle">No organisations found</text>
+</svg>'''
+
+    # Layout: up to 8 orgs per row, circular avatars
+    MAX_PER_ROW = 8
+    AVATAR_R    = 36      # radius
+    AVATAR_D    = AVATAR_R * 2
+    H_CELL      = AVATAR_D + 30  # avatar + label
+    PAD         = 24
+    rows        = [orgs[i:i+MAX_PER_ROW] for i in range(0, len(orgs), MAX_PER_ROW)]
+    BODY_H      = PAD + len(rows) * H_CELL + PAD
+    H           = HDR + BODY_H
+
+    svg  = f'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{W}" height="{H}" viewBox="0 0 {W} {H}">\n'
+    svg += f'  <defs>\n'
+
+    # Fetch avatars and embed as base64
+    avatar_data = {}
+    for org in orgs:
+        try:
+            req = urllib.request.Request(org["avatar"], headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                raw = resp.read()
+            b64 = base64.b64encode(raw).decode()
+            avatar_data[org["login"]] = f"data:image/png;base64,{b64}"
+        except Exception as e:
+            print(f"[orgs] avatar fetch failed for {org['login']}: {e}")
+            avatar_data[org["login"]] = ""
+
+        # clipPath per org for circular mask
+        svg += f'    <clipPath id="clip-{org["login"]}">\n'
+        svg += f'      <circle cx="{AVATAR_R}" cy="{AVATAR_R}" r="{AVATAR_R}"/>\n'
+        svg += f'    </clipPath>\n'
+
+    svg += f'  </defs>\n'
+    svg += f'  <rect width="{W}" height="{H}" fill="{BG}"/>\n'
+    svg += f'  <rect width="{W}" height="{HDR}" fill="{GRAY}"/>\n'
+    svg += f'  <rect x="0" y="0" width="4" height="{HDR}" fill="{BG}"/>\n'
+    svg += f'  <text x="14" y="19" font-size="13" fill="{BG}" font-family="{MONO}" font-weight="bold" letter-spacing="2">&#9632;  GITHUB ORGANISATIONS</text>\n'
+    svg += f'  <text x="720" y="19" font-size="11" fill="{BG}" font-family="{MONO}">[ F10 ]</text>\n'
+
+    for r, row in enumerate(rows):
+        n      = len(row)
+        spacing = min(120, (W - PAD*2) // n)
+        total_w = spacing * n
+        start_x = (W - total_w) // 2 + spacing // 2
+        row_y   = HDR + PAD + r * H_CELL
+
+        for i, org in enumerate(row):
+            cx = start_x + i * spacing
+            cy = row_y + AVATAR_R
+
+            # circle background
+            svg += f'  <circle cx="{cx}" cy="{cy}" r="{AVATAR_R+2}" fill="{BG2}" stroke="{CYAN}" stroke-width="1"/>\n'
+
+            # avatar image clipped to circle
+            if avatar_data.get(org["login"]):
+                img_x = cx - AVATAR_R
+                img_y = cy - AVATAR_R
+                svg += f'  <image x="{img_x}" y="{img_y}" width="{AVATAR_D}" height="{AVATAR_D}" href="{avatar_data[org["login"]]}" clip-path="url(#clip-{org["login"]})"/>\n'
+            else:
+                # fallback: initials
+                initials = org["login"][:2].upper()
+                svg += f'  <text x="{cx}" y="{cy+5}" font-size="16" fill="{CYAN}" font-family="{MONO}" text-anchor="middle" font-weight="bold">{initials}</text>\n'
+
+            # org name below avatar
+            name = org["login"][:14]
+            svg += f'  <text x="{cx}" y="{cy + AVATAR_R + 16}" font-size="10" fill="{GRAY}" font-family="{MONO}" text-anchor="middle">{name}</text>\n'
+
+    svg += '</svg>'
+    return svg
+
+
 def rewrite_readme(articles, stats, projects, contact):
     with open(README_PATH, "r", encoding="utf-8") as f:
         content = f.read()
@@ -696,6 +825,12 @@ if __name__ == "__main__":
 
     print("── Contact ──")
     contact = fetch_contact()
+
+    print("── Organisations ──")
+    orgs = fetch_orgs()
+    svg_orgs = generate_orgs_svg(orgs)
+    with open("section-orgs.svg", "w") as f: f.write(svg_orgs)
+    print(f"  saved section-orgs.svg ({len(orgs)} orgs)")
 
     print("── Rewriting README ──")
     rewrite_readme(articles, stats, projects, contact)
