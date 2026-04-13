@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="860" height="278" viewBox="0 0 860 278">
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="295" viewBox="0 0 860 295">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono');
@@ -16,6 +16,7 @@
       .m2{animation:show .01s 5.45s both}
       .m3{animation:show .01s 5.6s both}
       .m4{animation:show .01s 5.75s both}
+      .m5{animation:show .01s 5.9s both}
       .cur{animation:blink 1s step-end infinite 6.0s both}
       @keyframes show{from{opacity:0}to{opacity:1}}
       @keyframes fill{from{width:0}to{width:828px}}
@@ -27,7 +28,7 @@
     </pattern>
   </defs>
 
-  <rect width="860" height="278" fill="#0000aa"/>
+  <rect width="860" height="295" fill="#0000aa"/>
   <rect width="860" height="28" fill="#aaaaaa"/>
   <text x="14" y="19" font-size="14" fill="#0000aa" font-weight="bold" letter-spacing="2">NETANEL BIOS FIRMWARE</text>
   <text x="690" y="19" font-size="14" fill="#0000aa" letter-spacing="1">v1.90AI  2026</text>
@@ -47,11 +48,31 @@
     <text x="428" y="184" font-size="10" fill="#0000aa" text-anchor="middle" font-weight="bold">░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 100%</text>
   </g>
 
+  <!-- Divider -->
   <line x1="14" y1="200" x2="846" y2="200" stroke="#55ffff" stroke-width="1" class="main"/>
 
-  <g class="main"><text x="14" y="228" font-size="30" fill="#ffffff" font-weight="bold" letter-spacing="4">NETANEL ELIAV</text><text x="364" y="228" font-size="30" fill="#55ffff" class="cur">_</text></g>
-  <g class="m2"><text x="14" y="248" font-size="13" fill="#ffff55">// AI Expert  ·  Startup Mentor  ·  Advisor  ·  UK &amp; Global</text></g>
-  <g class="m3"><text x="14" y="264" font-size="11" fill="#aaaaaa">Infusing life's vibrance into technological craft — pushing boundaries before they hit the market.</text></g>
+  <!-- Name — large, bold, white -->
+  <g class="main">
+    <text x="14" y="230" font-size="32" fill="#ffffff" font-weight="bold" letter-spacing="4">NETANEL ELIAV</text>
+    <text x="318" y="230" font-size="32" fill="#55ffff" class="cur">_</text>
+  </g>
 
-  <rect width="860" height="278" fill="url(#scan)"/>
+  <!-- Title line -->
+  <g class="m2">
+    <text x="14" y="252" font-size="14" fill="#ffff55" letter-spacing="1">AI Expert  ·  Startup Mentor  ·  Tech Advisor  ·  CTO</text>
+  </g>
+
+  <!-- Two info columns -->
+  <g class="m3">
+    <text x="14" y="270" font-size="12" fill="#aaaaaa">&#128205; United Kingdom  ·  Global</text>
+    <text x="300" y="270" font-size="12" fill="#aaaaaa">&#128279; inetanel.com</text>
+    <text x="500" y="270" font-size="12" fill="#aaaaaa">&#127760; Open to collaborations &amp; advisory</text>
+  </g>
+
+  <!-- Empty row — keeps bottom padding without Forbes text -->
+  <g class="m4">
+    <text x="14" y="287" font-size="11" fill="#0000aa">.</text>
+  </g>
+
+  <rect width="860" height="295" fill="url(#scan)"/>
 </svg>
