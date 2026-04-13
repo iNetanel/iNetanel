@@ -1,6 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="860" height="28" viewBox="0 0 860 28">
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="296" viewBox="0 0 860 296">
+  <rect width="860" height="296" fill="#0000aa"/>
   <rect width="860" height="28" fill="#aaaaaa"/>
   <rect x="0" y="0" width="4" height="28" fill="#0000aa"/>
-  <text x="14" y="19" font-size="13" fill="#0000aa" font-family="'Courier New',monospace" font-weight="bold" letter-spacing="2">■  ABOUT ME</text>
+  <text x="14" y="19" font-size="13" fill="#0000aa" font-family="'Courier New',monospace" font-weight="bold" letter-spacing="2">&#9632;  ABOUT ME</text>
   <text x="760" y="19" font-size="11" fill="#0000aa" font-family="'Courier New',monospace">[ F5 ]</text>
+  <rect x="14" y="34" width="832" height="256" fill="#00007a" rx="2" opacity="0.4"/>
+  <text x="20" y="58" font-size="11" fill="#55ffff" font-family="'Courier New',monospace" font-weight="bold">SYSTEM IDENTITY</text>
+  <text x="20" y="78" font-size="10" fill="#55ffff" font-family="'Courier New',monospace" font-weight="normal">────────────────────────────────────────────────────────────────────────</text>
+  <text x="20" y="98" font-size="12" fill="#ffffff" font-family="'Courier New',monospace" font-weight="normal">Name    : Netanel Eliav</text>
+  <text x="20" y="118" font-size="12" fill="#ffffff" font-family="'Courier New',monospace" font-weight="normal">Role    : AI Expert · Startup Mentor · Tech Advisor · CTO</text>
+  <text x="20" y="138" font-size="12" fill="#ffffff" font-family="'Courier New',monospace" font-weight="normal">Location: United Kingdom (Global)</text>
+  <text x="20" y="158" font-size="12" fill="#55ffff" font-family="'Courier New',monospace" font-weight="normal">Website : https://inetanel.com</text>
+  <text x="20" y="178" font-size="12" fill="#ffff55" font-family="'Courier New',monospace" font-weight="normal">Status  : [ ONLINE ] — Open to collaborations &amp; advisory roles</text>
+  <text x="20" y="198" font-size="10" fill="#55ffff" font-family="'Courier New',monospace" font-weight="normal">────────────────────────────────────────────────────────────────────────</text>
+  <text x="20" y="218" font-size="12" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">Bio     : Infusing life's vibrance into technological craft.</text>
+  <text x="20" y="238" font-size="12" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">          Building projects before they hit the market.</text>
+  <text x="20" y="258" font-size="12" fill="#aaaaaa" font-family="'Courier New',monospace" font-weight="normal">          Forbes · 60 Leaders on AI · Silicon Review.</text>
+  <text x="20" y="278" font-size="10" fill="#55ffff" font-family="'Courier New',monospace" font-weight="normal">────────────────────────────────────────────────────────────────────────</text>
 </svg>
