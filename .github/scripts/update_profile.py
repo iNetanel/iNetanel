@@ -26,7 +26,7 @@ CYAN    = "#55ffff"
 YELLOW  = "#ffff55"
 WHITE   = "#ffffff"
 GRAY    = "#aaaaaa"
-DOT     = ["#00007a","#003055","#005a99","#0088cc","#55ffff"]
+DOT     = ["#1a1a3a", "#aaaaaa", "#4499cc", "#0088ff", "#0044cc"]
 LANG_COLORS = [CYAN, YELLOW, "#55ff55", "#ff55ff", "#ff9955", "#aaaaff", "#ff5555"]
 
 
