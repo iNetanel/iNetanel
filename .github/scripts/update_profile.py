@@ -447,53 +447,158 @@ def fetch_articles():
     return articles
 
 def build_articles_block(articles):
-    """Generate a blue SVG file for articles and return the markdown img tag."""
-    now    = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
-    BG     = "#0000aa"
-    BG2    = "#00007a"
-    CYAN   = "#55ffff"
-    YELLOW = "#ffff55"
-    WHITE  = "#ffffff"
-    GRAY   = "#aaaaaa"
-    W      = 860
-    MONO   = "'Courier New',monospace"
-    PAD    = 14
-    LH     = 19
+    """Generate per-article clickable SVGs + a header/footer SVG."""
+    now   = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    BG    = "#0000aa"; BG2 = "#00007a"; CYAN = "#55ffff"
+    YELLOW= "#ffff55"; WHITE = "#ffffff"; GRAY = "#aaaaaa"
+    W = 860; MONO = "'Courier New',monospace"; PAD = 14; LH = 19
 
-    rows = []
-    # header
-    rows.append((f"ARTICLES & PUBLICATIONS — {len(articles)} total  [ updated: {now} ]", CYAN, 11, True))
-    rows.append(("─" * 72, CYAN, 10, False))
+    # Header
+    hdr_h = PAD + 2*LH + PAD//2
+    hdr = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{hdr_h}" viewBox="0 0 {W} {hdr_h}">\n'
+    hdr += f'  <rect width="{W}" height="{hdr_h}" fill="{BG}"/>\n'
+    hdr += f'  <rect x="14" y="6" width="{W-28}" height="{hdr_h-12}" fill="{BG2}" rx="2" opacity="0.4"/>\n'
+    hdr += f'  <text x="20" y="{PAD+LH-2}" font-size="11" fill="{CYAN}" font-family="{MONO}" font-weight="bold">ARTICLES &amp; PUBLICATIONS &#8212; {len(articles)} total  [ updated: {now} ]</text>\n'
+    hdr += f'  <text x="20" y="{PAD+LH*2-2}" font-size="10" fill="{GRAY}" font-family="{MONO}">{"─"*72}</text>\n'
+    hdr += '</svg>'
+    with open("block-articles-header.svg", "w") as f: f.write(hdr)
+
+    lines = ['<div align="center"><img src="block-articles-header.svg" width="100%" alt="Articles"/></div>']
+
     for a in articles:
         date  = f"[{a['date']}]" if a["date"] else "        "
         title = a["title"]
-        if len(title) > 70: title = title[:67] + "..."
-        url   = a["url"].replace("https://","").replace("http://","")
-        if len(url) > 68: url = url[:65] + "..."
+        if len(title) > 72: title = title[:69] + "..."
+        url   = a["url"]
+        disp  = url.replace("https://","").replace("http://","")
+        if len(disp) > 65: disp = disp[:62] + "..."
         tags  = "  ".join(f"#{t}" for t in a["tags"]) if a["tags"] else ""
-        rows.append((f"{date}  {title}", WHITE, 12, False))
-        if tags: rows.append((f"            {tags}", YELLOW, 11, False))
-        rows.append((f"            → {url}", CYAN, 11, False))
-        rows.append(("", GRAY, 10, False))
-    rows.append(("─" * 72, CYAN, 10, False))
+        tag_rows = 1 if tags else 0
+        row_h = PAD + (2 + tag_rows) * LH + PAD//2
 
-    H = PAD + len(rows) * LH + PAD
+        def esc(s): return s.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
+
+        svg  = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{row_h}" viewBox="0 0 {W} {row_h}">\n'
+        svg += f'  <rect width="{W}" height="{row_h}" fill="{BG}"/>\n'
+        svg += f'  <text x="20" y="{PAD+LH-2}" font-size="12" fill="{WHITE}" font-family="{MONO}">{esc(date)}  {esc(title)}</text>\n'
+        if tags:
+            svg += f'  <text x="20" y="{PAD+LH*2-2}" font-size="11" fill="{YELLOW}" font-family="{MONO}">            {esc(tags)}</text>\n'
+        svg += f'  <text x="20" y="{PAD+LH*(2+tag_rows)-2}" font-size="11" fill="{CYAN}" font-family="{MONO}">            &#8594; {esc(disp)}</text>\n'
+        svg += '</svg>'
+
+        fname = f"block-article-{abs(hash(url)) % 100000}.svg"
+        with open(fname, "w") as f: f.write(svg)
+        lines.append(f'<a href="{url}"><img src="{fname}" width="100%" alt="{esc(title[:60])}"/></a>')
+
+    # Footer
+    ftr = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="20" viewBox="0 0 {W} 20"><rect width="{W}" height="20" fill="{BG}"/><rect x="14" y="0" width="{W-28}" height="20" fill="{BG2}" rx="2" opacity="0.4"/><text x="20" y="14" font-size="10" fill="{GRAY}" font-family="{MONO}">{"─"*72}</text></svg>'
+    with open("block-articles-footer.svg", "w") as f: f.write(ftr)
+    lines.append('<div align="center"><img src="block-articles-footer.svg" width="100%" alt=""/></div>')
+    return "\n".join(lines)
+
+
+def fetch_projects():
+    try:
+        resp = requests.get("https://inetanel.com/projects", timeout=15)
+        soup = BeautifulSoup(resp.text, "html.parser")
+        projects = []
+        for h2 in soup.find_all("h2"):
+            name = h2.get_text(strip=True)
+            if not name or name in ["Projects","Main Menu"]: continue
+            stage = ""; status = ""; desc_parts = []; first_url = ""
+            node = h2.find_next_sibling()
+            p_count = 0
+            while node and node.name not in ["h2","h1"]:
+                if node.name == "p":
+                    txt = node.get_text(strip=True)
+                    if p_count == 0: stage = txt
+                    elif p_count == 1: status = txt
+                    p_count += 1
+                    a_tag = node.find("a")
+                    if a_tag and not first_url:
+                        href = a_tag.get("href","")
+                        if href.startswith("http"): first_url = href
+                elif node.name == "ul":
+                    for li in node.find_all("li"):
+                        desc_parts.append(li.get_text(strip=True))
+                node = node.find_next_sibling()
+            desc = " ".join(desc_parts[:2])
+            if len(desc) > 200: desc = desc[:197] + "..."
+            projects.append({"name":name,"stage":stage,"status":status,"desc":desc,"url":first_url})
+        print(f"[projects] {len(projects)} found")
+        return projects
+    except Exception as e:
+        print(f"[projects] {e}"); return []
+
+
+def build_projects_block(projects):
+    BG="#0000aa"; BG2="#00007a"; CYAN="#55ffff"; YELLOW="#ffff55"; WHITE="#ffffff"; GRAY="#aaaaaa"
+    W=860; MONO="'Courier New',monospace"; PAD=14; LH=19
+
+    def esc(s): return s.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
+
+    # Header
+    hdr = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{PAD+2*LH+PAD//2}" viewBox="0 0 {W} {PAD+2*LH+PAD//2}"><rect width="{W}" height="{PAD+2*LH+PAD//2}" fill="{BG}"/><rect x="14" y="6" width="{W-28}" height="{PAD+2*LH+PAD//2-12}" fill="{BG2}" rx="2" opacity="0.4"/><text x="20" y="{PAD+LH-2}" font-size="11" fill="{CYAN}" font-family="{MONO}" font-weight="bold">PROJECTS</text><text x="20" y="{PAD+LH*2-2}" font-size="10" fill="{GRAY}" font-family="{MONO}">{"─"*72}</text></svg>'
+    with open("block-projects-header.svg","w") as f: f.write(hdr)
+    lines = ['<div align="center"><img src="block-projects-header.svg" width="100%" alt="Projects"/></div>']
+
+    for p in projects:
+        words = p["desc"].split()
+        dl = []; cur = ""
+        for w in words:
+            if len(cur)+len(w)+1 > 82: dl.append(cur.strip()); cur = w+" "
+            else: cur += w+" "
+        if cur: dl.append(cur.strip())
+        dl = dl[:3]
+        row_h = PAD + LH + LH + len(dl)*LH + PAD
+        texts = ""
+        texts += f'  <text x="20" y="{PAD+LH-2}" font-size="14" fill="{YELLOW}" font-family="{MONO}" font-weight="bold">{esc(p["name"])}</text>\n'
+        texts += f'  <text x="20" y="{PAD+LH*2-2}" font-size="11" fill="{CYAN}" font-family="{MONO}">{esc(p["stage"])}  ·  {esc(p["status"])}</text>\n'
+        for i,line in enumerate(dl):
+            texts += f'  <text x="20" y="{PAD+LH*(3+i)-2}" font-size="12" fill="{WHITE}" font-family="{MONO}">{esc(line)}</text>\n'
+        svg = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{row_h}" viewBox="0 0 {W} {row_h}"><rect width="{W}" height="{row_h}" fill="{BG}"/><rect x="14" y="6" width="{W-28}" height="{row_h-12}" fill="{BG2}" rx="2" opacity="0.4"/>\n{texts}</svg>'
+        fname = f"block-project-{abs(hash(p['name']))%100000}.svg"
+        with open(fname,"w") as f: f.write(svg)
+        if p["url"]:
+            lines.append(f'<a href="{p["url"]}"><img src="{fname}" width="100%" alt="{esc(p["name"])}"/></a>')
+        else:
+            lines.append(f'<div align="center"><img src="{fname}" width="100%" alt="{esc(p["name"])}"/></div>')
+
+    ftr = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="20" viewBox="0 0 {W} 20"><rect width="{W}" height="20" fill="{BG}"/><rect x="14" y="0" width="{W-28}" height="20" fill="{BG2}" rx="2" opacity="0.4"/><text x="20" y="14" font-size="10" fill="{GRAY}" font-family="{MONO}">{"─"*72}</text></svg>'
+    with open("block-projects-footer.svg","w") as f: f.write(ftr)
+    lines.append('<div align="center"><img src="block-projects-footer.svg" width="100%" alt=""/></div>')
+    return "\n".join(lines)
+
+
+def build_contact_block():
+    BG="#0000aa"; BG2="#00007a"; CYAN="#55ffff"; YELLOW="#ffff55"; WHITE="#ffffff"; GRAY="#aaaaaa"
+    W=860; MONO="'Courier New',monospace"; PAD=14; LH=20
+    rows = [
+        ("CONTACT INFORMATION", YELLOW, 13, True),
+        ("─"*70, CYAN, 10, False),
+        ("Email      :  netanel@inetanel.com", WHITE, 12, False),
+        ("Phone      :  +44 (7570) 397-338", WHITE, 12, False),
+        ("LinkedIn   :  linkedin.com/in/inetanel", WHITE, 12, False),
+        ("Medium     :  medium.com/@inetanel", WHITE, 12, False),
+        ("Crunchbase :  crunchbase.com/person/netanel-eliav", WHITE, 12, False),
+        ("F6S        :  f6s.com/netanel", WHITE, 12, False),
+        ("─"*70, CYAN, 10, False),
+        ("Location   :  London, United Kingdom", GRAY, 12, False),
+        ("Open to    :  Advisory · Due Diligence · Architecture Reviews", GRAY, 12, False),
+        ("           :  Keynotes · Mentorship · AI for Good", GRAY, 12, False),
+        ("─"*70, CYAN, 10, False),
+    ]
+    H = PAD + len(rows)*LH + PAD
     texts = ""
-    for i, (txt, col, fs, bold) in enumerate(rows):
-        y  = PAD + i * LH + LH - 4
+    for i,(txt,col,fs,bold) in enumerate(rows):
+        y = PAD + i*LH + LH - 4
         fw = "bold" if bold else "normal"
-        txt_safe = txt.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
+        txt_safe = txt.replace("&","&amp;")
         texts += f'  <text x="20" y="{y}" font-size="{fs}" fill="{col}" font-family="{MONO}" font-weight="{fw}">{txt_safe}</text>\n'
+    svg = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}"><rect width="{W}" height="{H}" fill="{BG}"/><rect x="14" y="8" width="{W-28}" height="{H-16}" fill="{BG2}" rx="2" opacity="0.4"/>\n{texts}</svg>'
+    with open("block-contact.svg","w") as f: f.write(svg)
+    return '<a href="https://inetanel.com/contact"><img src="block-contact.svg" width="100%" alt="Contact"/></a>'
 
-    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
-  <rect width="{W}" height="{H}" fill="{BG}"/>
-  <rect x="14" y="8" width="{W-28}" height="{H-16}" fill="{BG2}" rx="2" opacity="0.4"/>
-{texts}</svg>'''
-
-    with open("block-articles.svg", "w", encoding="utf-8") as f:
-        f.write(svg)
-
-    return '<div align="center"><img src="block-articles.svg" width="100%" alt="Articles"/></div>'
 
 
 
@@ -501,17 +606,33 @@ def build_articles_block(articles):
 # README REWRITE
 # ═════════════════════════════════════════════════════════════════
 
-def rewrite_readme(articles, stats):
+def rewrite_readme(articles, stats, projects):
     with open(README_PATH, "r", encoding="utf-8") as f:
         content = f.read()
 
-    block = build_articles_block(articles)
+    # Articles
+    art_block = build_articles_block(articles)
     content = re.sub(
         r"(<!-- ARTICLES:START -->).*?(<!-- ARTICLES:END -->)",
-        f"<!-- ARTICLES:START -->\n\n{block}\n\n<!-- ARTICLES:END -->",
+        f"<!-- ARTICLES:START -->\n\n{art_block}\n\n<!-- ARTICLES:END -->",
         content, flags=re.DOTALL)
 
-    year   = datetime.utcnow().year
+    # Projects
+    proj_block = build_projects_block(projects)
+    content = re.sub(
+        r"(<!-- PROJECTS:START -->).*?(<!-- PROJECTS:END -->)",
+        f"<!-- PROJECTS:START -->\n\n{proj_block}\n\n<!-- PROJECTS:END -->",
+        content, flags=re.DOTALL)
+
+    # Contact
+    contact_block = build_contact_block()
+    content = re.sub(
+        r"(<!-- CONTACT:START -->).*?(<!-- CONTACT:END -->)",
+        f"<!-- CONTACT:START -->\n\n{contact_block}\n\n<!-- CONTACT:END -->",
+        content, flags=re.DOTALL)
+
+    # Stats badges
+    year = datetime.utcnow().year
     badges = "\n".join([
         f"![Stars](https://img.shields.io/badge/Stars-{stats['stars']}-ffff55?style=flat-square&labelColor=0000aa&color=0000aa)",
         f"![Commits](https://img.shields.io/badge/Commits_{year}-{stats['commits']}-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)",
@@ -562,7 +683,10 @@ if __name__ == "__main__":
     print("── Articles ──")
     articles = fetch_articles()
 
+    print("── Projects ──")
+    projects = fetch_projects()
+
     print("── Rewriting README ──")
-    rewrite_readme(articles, stats)
+    rewrite_readme(articles, stats, projects)
 
     print("── Done ──")
