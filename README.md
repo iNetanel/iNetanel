@@ -100,11 +100,11 @@ Bio     : Infusing life's vibrance into technological craft.
 <!-- Live badges — auto-updated daily -->
 <!-- STATS-BADGES:START -->
 
-![Stars](https://img.shields.io/badge/Stars-1-ffff55?style=flat-square&labelColor=0000aa&color=0000aa)
-![Commits](https://img.shields.io/badge/Commits_2026-41-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+![Stars](https://img.shields.io/badge/Stars-0-ffff55?style=flat-square&labelColor=0000aa&color=0000aa)
+![Commits](https://img.shields.io/badge/Commits_2026-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
 ![PRs](https://img.shields.io/badge/Pull_Requests-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
-![Followers](https://img.shields.io/badge/Followers-1-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
-![Repos](https://img.shields.io/badge/Repos-3-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+![Followers](https://img.shields.io/badge/Followers-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
+![Repos](https://img.shields.io/badge/Repos-0-55ffff?style=flat-square&labelColor=0000aa&color=0000aa)
 
 <!-- STATS-BADGES:END -->
 
@@ -143,41 +143,59 @@ Bio     : Infusing life's vibrance into technological craft.
 <!-- ARTICLES:START -->
 
 ```
-ARTICLES & PUBLICATIONS — 11 total  [ auto-updated: 2026-04-13 07:45 UTC ]
+ARTICLES & PUBLICATIONS — 13 total  [ auto-updated daily ]
 ───────────────────────────────────────────────────────────────────────
-[2026-04]  GPT-5.4 vs Claude Opus 4.6 for Coding
-         → inetanel.com/articles/gpt-5-4-vs-claude-opus-4-6-coding
-
-[2026-03]  Documentation is Code Now: Machine-First Knowledge Architecture
-         → inetanel.com/articles/documentation-is-code-machine-first-knowled...
-
 [2026-03]  Claude Code vs OpenCode: The CTO Decision Nobody Talks About Honestly
-         → inetanel.com/articles/claude-code-vs-opencode-cto-decision
+           #CTO  #AI  #ClaudeCode
+           → inetanel.com/articles/claude-code-vs-opencode-cto-decision
 
-[2026-03]  Someone Caught the AI Money Loop - Here's What They Found
-         → inetanel.com/articles/the-ai-money-loop-nvidia-openai-big-tech
+[2026-03]  Someone Caught the AI Money Loop — Here's What They Found
+           #AI  #Investment
+           → inetanel.com/articles/the-ai-money-loop-nvidia-openai-big-tech
 
 [2026-01]  AGI is Everywhere in Headlines. Here's What Actually Breaks in Production.
-         → inetanel.com/articles/agi-production-what-breaks
+           #AGI  #AI  #production
+           → inetanel.com/articles/agi-production-what-breaks
 
 [2025-12]  GPT Benchmark Analysis 2025: The Hard Reality for OpenAI's CEO
-         → inetanel.com/articles/gpt_benchmark_analysis_2025
+           #AI  #AGI
+           → inetanel.com/articles/gpt_benchmark_analysis_2025
 
-[2025-01]  The Missing Link in AGI: Why the Amygdala Could be Our Breakthrough Moment
-         → inetanel.com/articles/the_missing_link_in_agi
+[2025-03]  How AI Agents Are Helping Startups to Scale  [ Forbes ]
+           #AIAgents  #Startups
+           → forbes.com/sites/alisoncoleman/2025/03/16/how-ai-agents-are-helping-startups-to-scale
 
-[2025-01]  The Evolution of Intelligence: Distinguishing Knowledge, Wisdom, and Intelligence in the AI Era
-         → inetanel.com/articles/the_evolution_of_intelligence
+[2025-01]  The Missing Link in AGI: Why the Amygdala Could Be Our Breakthrough Moment
+           #AI  #AGI
+           → inetanel.com/articles/the_missing_link_in_agi
+
+[2025-01]  The Evolution of Intelligence: Knowledge, Wisdom & AI
+           #AIResearch  #CognitiveScience
+           → inetanel.com/articles/the_evolution_of_intelligence
 
 [2024-08]  Open Source vs. Big Tech: Who Will Win the AI War?
-         → inetanel.com/articles/open_source_vs_big_tech
+           #AI  #OpenSource
+           → inetanel.com/articles/open_source_vs_big_tech
 
-[2024-01]  AdaptiveBridge Unleashed: The Maze of Features — Wasting Money in Production Blitz
-         → inetanel.com/articles/adaptivebridge_unleashed
+[2024-01]  AdaptiveBridge Unleashed: Wasting Money in Production Blitz
+           #ML  #FeatureEngineering
+           → inetanel.com/articles/adaptivebridge_unleashed
 
-[2023-10]  Bridging the Data Gap with AdaptiveBridge: NaN Is No Longer an Issue
-         → inetanel.com/articles/bridging_the_data_gap_with_adaptivebridge
+[2023-10]  Bridging the Data Gap with AdaptiveBridge
+           #ML  #DataQuality
+           → inetanel.com/articles/bridging_the_data_gap_with_adaptivebridge
 
+[2022-08]  Podcast Interview — The Brand Called You  [ YouTube ]
+           #Podcast  #AI
+           → youtube.com/watch?v=a3ZlCef71Gw
+
+[2022-01]  From Algorithms to Ethics  [ 60 Leaders on AI ]
+           #AI  #Ethics
+           → 60 Leaders on Artificial Intelligence (PDF)
+
+[2021-10]  SightBit: AI-Based Drowning Prevention  [ Silicon Review ]
+           #ComputerVision  #Safety
+           → thesiliconreview.com/magazine/profile/sightbit-...
 ───────────────────────────────────────────────────────────────────────
 ```
 
