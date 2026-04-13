@@ -26,7 +26,7 @@ CYAN    = "#55ffff"
 YELLOW  = "#ffff55"
 WHITE   = "#ffffff"
 GRAY    = "#aaaaaa"
-DOT     = ["#cccccc", "#a8c8e8", "#4499cc", "#0088ff", "#0044cc"]
+DOT     = ["none", "#4dacff", "#1a94ff", "#007ae6", "#005fb3"]
 LANG_COLORS = [CYAN, YELLOW, "#55ff55", "#ff55ff", "#ff9955", "#aaaaff", "#ff5555"]
 
 
@@ -353,7 +353,8 @@ def generate_activity_svg(days):
             x     = offset_x + col * (CELL + GAP)
             y     = HDR + PAD_Y + MONTH_H + row * (CELL + GAP)
             extra = f' filter="url(#glow)"' if lvl == 4 else ""
-            cells += f'\n  <rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" fill="{color}" rx="2"{extra}/>'
+            fill  = "none" if lvl == 0 else color
+            cells += f'\n  <rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" fill="{fill}" stroke="#cccccc" stroke-width="0.5" rx="2"{extra}/>'
 
     # Draw month labels
     month_labels = ""
@@ -369,7 +370,8 @@ def generate_activity_svg(days):
     legend = f'<text x="{leg_x}" y="{leg_y+10}" font-size="10" fill="{GRAY}" font-family="\'Courier New\',monospace">Less</text>'
     for i, c in enumerate(DOT):
         lx = leg_x + 36 + i * 17
-        legend += f'<rect x="{lx}" y="{leg_y}" width="{CELL}" height="{CELL}" fill="{c}" rx="2"/>'
+        fill = "none" if i == 0 else c
+        legend += f'<rect x="{lx}" y="{leg_y}" width="{CELL}" height="{CELL}" fill="{fill}" stroke="#cccccc" stroke-width="0.5" rx="2"/>'
     end_x = leg_x + 36 + len(DOT) * 17 + 4
     legend += f'<text x="{end_x}" y="{leg_y+10}" font-size="10" fill="{GRAY}" font-family="\'Courier New\',monospace">More</text>'
 
