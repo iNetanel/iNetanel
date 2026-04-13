@@ -8,12 +8,6 @@
 
 <!-- ── ABOUT ──────────────────────────────────────────────────── -->
 <div align="center"><a href="https://inetanel.com/about"><img src="section-about.svg" width="100%" alt="About Me"/></a></div>
-<div align="center">
-
-[![Website](https://img.shields.io/badge/inetanel.com-0000aa?style=flat-square&logo=firefox&logoColor=55ffff&labelColor=0000aa)](https://inetanel.com)&nbsp;[![Articles](https://img.shields.io/badge/Articles-0000aa?style=flat-square&logo=readme&logoColor=55ffff&labelColor=0000aa)](https://inetanel.com/articles)&nbsp;[![Life Map](https://img.shields.io/badge/Life_Map-0000aa?style=flat-square&logo=googlemaps&logoColor=ffff55&labelColor=0000aa)](https://inetanel.com/lifemap)&nbsp;[![Contact](https://img.shields.io/badge/Contact-0000aa?style=flat-square&logo=mailgun&logoColor=55ffff&labelColor=0000aa)](https://inetanel.com/contact)
-
-</div>
-
 <!-- ── TECH STACK ──────────────────────────────────────────────── -->
 <div align="center"><a href="https://inetanel.com/certifications"><img src="section-stack.svg" width="100%" alt="Tech Stack"/></a></div>
 

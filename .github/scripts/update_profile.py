@@ -608,14 +608,14 @@ def build_contact_block(contact=None):
         (f"F6S        :  {f6s}", WHITE, 12, False),
         ("─"*74, CYAN, 10, False),
         (f"Location   :  {location}", GRAY, 12, False),
+        ("Open to    :", GRAY, 12, False),
     ]
     if avail:
-        rows.append(("Open to    :  " + avail[0][:58], GRAY, 12, False))
-        for a in avail[1:4]:
-            rows.append(("           :  " + a[:58], GRAY, 12, False))
+        for a in avail[:5]:
+            rows.append((f"  ·  {a[:65]}", GRAY, 11, False))
     else:
-        rows.append(("Open to    :  Advisory · Due Diligence · Architecture Reviews", GRAY, 12, False))
-        rows.append(("           :  Keynotes · Mentorship · AI for Good", GRAY, 12, False))
+        rows.append(("  ·  Advisory · Due Diligence · Architecture Reviews", GRAY, 11, False))
+        rows.append(("  ·  Keynotes · Mentorship · AI for Good", GRAY, 11, False))
     rows.append(("─"*74, CYAN, 10, False))
 
     make_section_svg("section-contact.svg", "CONTACT", "[ F8 ]", rows)
