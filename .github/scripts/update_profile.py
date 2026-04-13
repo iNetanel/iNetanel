@@ -561,10 +561,8 @@ def fetch_contact():
         info = {}
         for a in soup.find_all("a", href=True):
             href = a["href"]; text = a.get_text(strip=True)
-            if "mailto:" in href or ("@" in text and "." in text):
-                raw = href.replace("mailto:","") if "mailto:" in href else text
-                if "@" in raw and not raw.startswith("["): info["email"] = raw
-            elif "tel:" in href: info["phone"] = text
+            # email skipped — Cloudflare obfuscates it, hardcoded in build_contact_block
+            if "tel:" in href: info["phone"] = text
             elif "linkedin.com" in href: info["linkedin"] = href.replace("https://www.","").replace("https://","")
             elif "medium.com" in href: info["medium"] = href.replace("https://","")
             elif "crunchbase.com" in href and "person" in href: info["crunchbase"] = href.replace("https://www.","").replace("https://","")
@@ -587,7 +585,7 @@ def fetch_contact():
 def build_contact_block(contact=None):
     CYAN="#55ffff"; YELLOW="#ffff55"; WHITE="#ffffff"; GRAY="#aaaaaa"
     c = contact or {}
-    email    = c.get("email","netanel@inetanel.com")
+    email    = "netanel@inetanel.com"  # hardcoded — Cloudflare blocks scraping
     phone    = c.get("phone","+44 (7570) 397-338")
     linkedin = c.get("linkedin","linkedin.com/in/inetanel")
     medium   = c.get("medium","medium.com/@inetanel")
