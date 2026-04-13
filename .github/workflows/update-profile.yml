@@ -27,7 +27,7 @@ jobs:
 
       - name: Run updater script
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
           GITHUB_USERNAME: inetanel
         run: python .github/scripts/update_profile.py
 
@@ -35,7 +35,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md generated-langs.svg generated-activity.svg generated-trophies.svg
+          git add README.md generated-langs.svg generated-activity.svg generated-trophies.svg block-articles.svg
           git diff --staged --quiet || (
             git commit -m "chore: auto-update profile [$(date +'%Y-%m-%d')]" &&
             git pull --rebase origin main &&
