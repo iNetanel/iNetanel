@@ -20,42 +20,42 @@
   <line x1="430.0" y1="272.0" x2="325.3" y2="376.7" stroke="#55ffff" stroke-width="1" opacity="0.45"/>
   <line x1="430.0" y1="272.0" x2="282.0" y2="272.0" stroke="#55ffff" stroke-width="1" opacity="0.45"/>
   <line x1="430.0" y1="272.0" x2="325.3" y2="167.3" stroke="#55ffff" stroke-width="1" opacity="0.45"/>
-  <polygon points="430.0,124.0 474.6,227.4 484.5,272.0 446.0,288.0 430.0,289.9 422.9,279.1 420.0,272.0 422.9,264.9" fill="#55ffff" fill-opacity="0.2" stroke="#55ffff" stroke-width="2.5" stroke-linejoin="round"/>
+  <polygon points="430.0,124.0 474.5,227.5 484.3,272.0 445.9,287.9 430.0,289.8 422.9,279.1 420.0,272.0 422.9,264.9" fill="#55ffff" fill-opacity="0.2" stroke="#55ffff" stroke-width="2.5" stroke-linejoin="round"/>
   <circle cx="430.0" cy="124.0" r="13" fill="#55ffff" opacity="0.12"/>
   <circle cx="430.0" cy="124.0" r="5" fill="#55ffff" stroke="#0000aa" stroke-width="2"/>
   <line x1="430.0" y1="124.0" x2="430.0" y2="54.0" stroke="#55ffff" stroke-width="0.5" opacity="0.3" stroke-dasharray="3 3"/>
   <rect x="391.0" y="32.0" width="78" height="44" fill="#00007a" rx="3"/>
   <rect x="391.0" y="32.0" width="78" height="44" fill="none" stroke="#55ffff" stroke-width="1" rx="3" opacity="0.7"/>
   <text x="430.0" y="48.0" font-size="13" fill="#55ffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">Python</text>
-  <text x="430.0" y="66.0" font-size="15" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">45.2%</text>
-  <circle cx="474.6" cy="227.4" r="13" fill="#ffff55" opacity="0.12"/>
-  <circle cx="474.6" cy="227.4" r="5" fill="#ffff55" stroke="#0000aa" stroke-width="2"/>
-  <line x1="474.6" y1="227.4" x2="584.1" y2="117.9" stroke="#ffff55" stroke-width="0.5" opacity="0.3" stroke-dasharray="3 3"/>
+  <text x="430.0" y="66.0" font-size="15" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">45.3%</text>
+  <circle cx="474.5" cy="227.5" r="13" fill="#ffff55" opacity="0.12"/>
+  <circle cx="474.5" cy="227.5" r="5" fill="#ffff55" stroke="#0000aa" stroke-width="2"/>
+  <line x1="474.5" y1="227.5" x2="584.1" y2="117.9" stroke="#ffff55" stroke-width="0.5" opacity="0.3" stroke-dasharray="3 3"/>
   <rect x="527.1" y="95.9" width="114" height="44" fill="#00007a" rx="3"/>
   <rect x="527.1" y="95.9" width="114" height="44" fill="none" stroke="#ffff55" stroke-width="1" rx="3" opacity="0.7"/>
   <text x="584.1" y="111.9" font-size="13" fill="#ffff55" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">TypeScript</text>
   <text x="584.1" y="129.9" font-size="15" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">19.2%</text>
-  <circle cx="484.5" cy="272.0" r="13" fill="#55ff55" opacity="0.12"/>
-  <circle cx="484.5" cy="272.0" r="5" fill="#55ff55" stroke="#0000aa" stroke-width="2"/>
-  <line x1="484.5" y1="272.0" x2="648.0" y2="272.0" stroke="#55ff55" stroke-width="0.5" opacity="0.3" stroke-dasharray="3 3"/>
+  <circle cx="484.3" cy="272.0" r="13" fill="#55ff55" opacity="0.12"/>
+  <circle cx="484.3" cy="272.0" r="5" fill="#55ff55" stroke="#0000aa" stroke-width="2"/>
+  <line x1="484.3" y1="272.0" x2="648.0" y2="272.0" stroke="#55ff55" stroke-width="0.5" opacity="0.3" stroke-dasharray="3 3"/>
   <rect x="613.5" y="250.0" width="69" height="44" fill="#00007a" rx="3"/>
   <rect x="613.5" y="250.0" width="69" height="44" fill="none" stroke="#55ff55" stroke-width="1" rx="3" opacity="0.7"/>
   <text x="648.0" y="266.0" font-size="13" fill="#55ff55" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">HTML</text>
   <text x="648.0" y="284.0" font-size="15" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">16.6%</text>
-  <circle cx="446.0" cy="288.0" r="13" fill="#ff55ff" opacity="0.12"/>
-  <circle cx="446.0" cy="288.0" r="5" fill="#ff55ff" stroke="#0000aa" stroke-width="2"/>
-  <line x1="446.0" y1="288.0" x2="584.1" y2="426.1" stroke="#ff55ff" stroke-width="0.5" opacity="0.3" stroke-dasharray="3 3"/>
+  <circle cx="445.9" cy="287.9" r="13" fill="#ff55ff" opacity="0.12"/>
+  <circle cx="445.9" cy="287.9" r="5" fill="#ff55ff" stroke="#0000aa" stroke-width="2"/>
+  <line x1="445.9" y1="287.9" x2="584.1" y2="426.1" stroke="#ff55ff" stroke-width="0.5" opacity="0.3" stroke-dasharray="3 3"/>
   <rect x="527.1" y="404.1" width="114" height="44" fill="#00007a" rx="3"/>
   <rect x="527.1" y="404.1" width="114" height="44" fill="none" stroke="#ff55ff" stroke-width="1" rx="3" opacity="0.7"/>
   <text x="584.1" y="420.1" font-size="13" fill="#ff55ff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">JavaScript</text>
   <text x="584.1" y="438.1" font-size="15" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">6.9%</text>
-  <circle cx="430.0" cy="289.9" r="13" fill="#ff9955" opacity="0.12"/>
-  <circle cx="430.0" cy="289.9" r="5" fill="#ff9955" stroke="#0000aa" stroke-width="2"/>
-  <line x1="430.0" y1="289.9" x2="430.0" y2="470.0" stroke="#ff9955" stroke-width="0.5" opacity="0.3" stroke-dasharray="3 3"/>
+  <circle cx="430.0" cy="289.8" r="13" fill="#ff9955" opacity="0.12"/>
+  <circle cx="430.0" cy="289.8" r="5" fill="#ff9955" stroke="#0000aa" stroke-width="2"/>
+  <line x1="430.0" y1="289.8" x2="430.0" y2="470.0" stroke="#ff9955" stroke-width="0.5" opacity="0.3" stroke-dasharray="3 3"/>
   <rect x="391.0" y="448.0" width="78" height="44" fill="#00007a" rx="3"/>
   <rect x="391.0" y="448.0" width="78" height="44" fill="none" stroke="#ff9955" stroke-width="1" rx="3" opacity="0.7"/>
   <text x="430.0" y="464.0" font-size="13" fill="#ff9955" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">Svelte</text>
-  <text x="430.0" y="482.0" font-size="15" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">5.5%</text>
+  <text x="430.0" y="482.0" font-size="15" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">5.4%</text>
   <circle cx="422.9" cy="279.1" r="13" fill="#aaaaff" opacity="0.12"/>
   <circle cx="422.9" cy="279.1" r="5" fill="#aaaaff" stroke="#0000aa" stroke-width="2"/>
   <line x1="422.9" y1="279.1" x2="275.9" y2="426.1" stroke="#aaaaff" stroke-width="0.5" opacity="0.3" stroke-dasharray="3 3"/>
