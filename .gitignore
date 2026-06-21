@@ -2,3 +2,7 @@
 generated-langs.svg
 generated-activity.svg
 generated-trophies.svg
+opencode.json
+/prompts
+.devcontainer
+.DS_Store
