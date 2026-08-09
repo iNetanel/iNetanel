@@ -20,14 +20,14 @@
   <line x1="430.0" y1="272.0" x2="325.3" y2="376.7" stroke="#55ffff" stroke-width="1" opacity="0.45"/>
   <line x1="430.0" y1="272.0" x2="282.0" y2="272.0" stroke="#55ffff" stroke-width="1" opacity="0.45"/>
   <line x1="430.0" y1="272.0" x2="325.3" y2="167.3" stroke="#55ffff" stroke-width="1" opacity="0.45"/>
-  <polygon points="430.0,124.0 449.7,252.3 444.0,272.0 438.8,280.8 430.0,282.0 422.9,279.1 420.0,272.0 422.9,264.9" fill="#55ffff" fill-opacity="0.2" stroke="#55ffff" stroke-width="2.5" stroke-linejoin="round"/>
+  <polygon points="430.0,124.0 449.7,252.3 444.0,272.0 438.7,280.7 430.0,282.0 422.9,279.1 420.0,272.0 422.9,264.9" fill="#55ffff" fill-opacity="0.2" stroke="#55ffff" stroke-width="2.5" stroke-linejoin="round"/>
   <circle cx="430.0" cy="124.0" r="13" fill="#55ffff" opacity="0.12"/>
   <circle cx="430.0" cy="124.0" r="5" fill="#55ffff" stroke="#0000aa" stroke-width="2"/>
   <line x1="430.0" y1="124.0" x2="430.0" y2="54.0" stroke="#55ffff" stroke-width="0.5" opacity="0.3" stroke-dasharray="3 3"/>
   <rect x="391.0" y="32.0" width="78" height="44" fill="#00007a" rx="3"/>
   <rect x="391.0" y="32.0" width="78" height="44" fill="none" stroke="#55ffff" stroke-width="1" rx="3" opacity="0.7"/>
   <text x="430.0" y="48.0" font-size="13" fill="#55ffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">Python</text>
-  <text x="430.0" y="66.0" font-size="15" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">70.6%</text>
+  <text x="430.0" y="66.0" font-size="15" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">70.7%</text>
   <circle cx="449.7" cy="252.3" r="13" fill="#ffff55" opacity="0.12"/>
   <circle cx="449.7" cy="252.3" r="5" fill="#ffff55" stroke="#0000aa" stroke-width="2"/>
   <line x1="449.7" y1="252.3" x2="584.1" y2="117.9" stroke="#ffff55" stroke-width="0.5" opacity="0.3" stroke-dasharray="3 3"/>
@@ -42,9 +42,9 @@
   <rect x="618.0" y="250.0" width="60" height="44" fill="none" stroke="#55ff55" stroke-width="1" rx="3" opacity="0.7"/>
   <text x="648.0" y="266.0" font-size="13" fill="#55ff55" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">HTML</text>
   <text x="648.0" y="284.0" font-size="15" fill="#ffffff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">6.7%</text>
-  <circle cx="438.8" cy="280.8" r="13" fill="#ff55ff" opacity="0.12"/>
-  <circle cx="438.8" cy="280.8" r="5" fill="#ff55ff" stroke="#0000aa" stroke-width="2"/>
-  <line x1="438.8" y1="280.8" x2="584.1" y2="426.1" stroke="#ff55ff" stroke-width="0.5" opacity="0.3" stroke-dasharray="3 3"/>
+  <circle cx="438.7" cy="280.7" r="13" fill="#ff55ff" opacity="0.12"/>
+  <circle cx="438.7" cy="280.7" r="5" fill="#ff55ff" stroke="#0000aa" stroke-width="2"/>
+  <line x1="438.7" y1="280.7" x2="584.1" y2="426.1" stroke="#ff55ff" stroke-width="0.5" opacity="0.3" stroke-dasharray="3 3"/>
   <rect x="545.1" y="404.1" width="78" height="44" fill="#00007a" rx="3"/>
   <rect x="545.1" y="404.1" width="78" height="44" fill="none" stroke="#ff55ff" stroke-width="1" rx="3" opacity="0.7"/>
   <text x="584.1" y="420.1" font-size="13" fill="#ff55ff" font-family="'Courier New',monospace" text-anchor="middle" font-weight="bold">Svelte</text>
